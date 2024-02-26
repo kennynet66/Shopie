@@ -1,0 +1,12 @@
+{
+  "name": "shopie",
+  "version": "1.0.0",
+  "description": "Your Ultimate Online Shopping Experience Welcome to Shopie, your go-to destination for a seamless and enjoyable online shopping experience. Shopie is designed with excellence in mind, offering a visually stunning and user-friendly interface for both customers and administrators.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
