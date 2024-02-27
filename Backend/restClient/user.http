@@ -1,0 +1,33 @@
+###Create User
+POST http://localhost:3000/user
+Content-Type: application/json
+
+{
+  "firstName": " ",
+  "lastName": " ",
+  "email": " ",
+  "password": " "
+}
+
+### Get Users
+GET http://localhost:3000/user
+Authorization: Bearer YOUR_ACCESS_TOKEN
+
+### Update User
+PUT http://localhost:3000/user/update/:id
+Content-Type: application/json
+Authorization: Bearer YOUR_ACCESS_TOKEN
+
+{
+  "firstName": " ",
+  "lastName": " ",
+  "email": " ",
+}
+
+### Get One User
+GET http://localhost:3000/user/:id
+Authorization: Bearer YOUR_ACCESS_TOKEN
+
+### Delete User
+DELETE http://localhost:3000/user/delete/:id
+Authorization: Bearer YOUR_ACCESS_TOKEN
