@@ -22,44 +22,53 @@ exports.deleteProduct = exports.getOneProduct = exports.getAllProducts = exports
 const mssql_1 = __importDefault(require("mssql"));
 const sql_config_1 = require("../Config/sql.config");
 const uuid_1 = require("uuid");
+const product_validator_1 = require("../Validators/product.validator");
 exports.createProduct = ((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        // Create a pool connection
-        const pool = yield mssql_1.default.connect(sql_config_1.sqlConfig);
-        // Check if the pool connection was made
-        if (pool.connected) {
-            // get the request body
-            const product = req.body;
-            console.log(product);
-            // Generate a unique id for each product
-            const productId = (0, uuid_1.v4)();
-            // Send the data to the database
-            const result = (yield pool.request()
-                .input('productId', mssql_1.default.VarChar, productId)
-                .input('productName', mssql_1.default.VarChar, product.productName)
-                .input('descr', mssql_1.default.VarChar, product.descr)
-                .input('productQuantity', mssql_1.default.Int, product.productQuantity)
-                .input('productImage', mssql_1.default.VarChar, product.productImage)
-                .input('productCategory', mssql_1.default.VarChar, product.productCategory)
-                .input('productPrice', mssql_1.default.Money, product.productPrice)
-                .execute('createProduct')).rowsAffected;
-            // Get and act according to the result
-            if (result[0] > 0) {
-                res.status(201).json({
-                    success: "Product created successfully"
-                });
-            }
-            else {
-                res.status(201).json({
-                    error: "Problem while creating the product"
-                });
-            }
+        // get the request body
+        const product = req.body;
+        // Generate a unique id for each product
+        const productId = (0, uuid_1.v4)();
+        // Validate the data using joi
+        const { error } = product_validator_1.newProductSchema.validate(req.body);
+        if (error) {
+            return res.json({
+                error: error.details[0].message
+            });
         }
         else {
-            // Return an error if there was an issue when creating the connection
-            return res.status(500).json({
-                error: "Could not create pool connection"
-            });
+            // Create a pool connection
+            const pool = yield mssql_1.default.connect(sql_config_1.sqlConfig);
+            // Check if the pool connection was made
+            if (pool.connected) {
+                // Send the data to the database
+                const result = (yield pool.request()
+                    .input('productId', mssql_1.default.VarChar, productId)
+                    .input('productName', mssql_1.default.VarChar, product.productName)
+                    .input('descr', mssql_1.default.VarChar, product.descr)
+                    .input('productQuantity', mssql_1.default.Int, product.productQuantity)
+                    .input('productImage', mssql_1.default.VarChar, product.productImage)
+                    .input('productCategory', mssql_1.default.VarChar, product.productCategory)
+                    .input('productPrice', mssql_1.default.Money, product.productPrice)
+                    .execute('createProduct')).rowsAffected;
+                // Get and act according to the result
+                if (result[0] > 0) {
+                    res.status(201).json({
+                        success: "Product created successfully"
+                    });
+                }
+                else {
+                    res.status(201).json({
+                        error: "Problem while creating the product"
+                    });
+                }
+            }
+            else {
+                // Return an error if there was an issue when creating the connection
+                return res.status(500).json({
+                    error: "Could not create pool connection"
+                });
+            }
         }
     }
     catch (error) {

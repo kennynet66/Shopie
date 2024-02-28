@@ -6,6 +6,7 @@ Content-Type: application/json
     "productName": "Juice wrld t-shirt",
     "descr": "This is a descr",
     "productQuantity": 200,
+    "productImage": "testimage",
     "productCategory": "21bc9239-a21d-453d-a6e8-a9e8ef1b34cf",
     "productPrice": 600
 }

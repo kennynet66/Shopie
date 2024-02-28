@@ -16,35 +16,45 @@ exports.getAllCategories = exports.createCategory = void 0;
 const mssql_1 = __importDefault(require("mssql"));
 const sql_config_1 = require("../Config/sql.config");
 const uuid_1 = require("uuid");
+const category_validator_1 = require("../Validators/category.validator");
 exports.createCategory = ((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        // Create a pool connection
-        const pool = yield mssql_1.default.connect(sql_config_1.sqlConfig);
-        // Check if pool connection was created
-        if (pool.connected) {
-            // Generate a unique id for 
-            const categoryId = (0, uuid_1.v4)();
-            // Get the category data from the req.body
-            const categoryDetails = req.body;
-            const result = (yield pool.request()
-                .input('categoryId', mssql_1.default.VarChar, categoryId)
-                .input('categoryName', mssql_1.default.VarChar, categoryDetails.categoryName)
-                .execute('createCategory')).rowsAffected;
-            if (result[0] > 0) {
-                res.status(200).json({
-                    success: "Category created successfuly"
-                });
-            }
-            else {
-                res.status(201).json({
-                    error: "Could not create category"
-                });
-            }
+        // Generate a unique id for 
+        const categoryId = (0, uuid_1.v4)();
+        // Get the category data from the req.body
+        const categoryDetails = req.body;
+        // Verify the data using joi
+        let { error } = category_validator_1.newCategorySchema.validate(categoryDetails);
+        if (error) {
+            return res.json({
+                error: error.details[0].message
+            });
         }
         else {
-            res.status(500).json({
-                error: "Could not create pool connection"
-            });
+            // Create a pool connection
+            const pool = yield mssql_1.default.connect(sql_config_1.sqlConfig);
+            // Check if pool connection was created
+            if (pool.connected) {
+                const result = (yield pool.request()
+                    .input('categoryId', mssql_1.default.VarChar, categoryId)
+                    .input('categoryName', mssql_1.default.VarChar, categoryDetails.categoryName)
+                    .execute('createCategory')).rowsAffected;
+                if (result[0] > 0) {
+                    res.status(200).json({
+                        success: "Category created successfuly"
+                    });
+                }
+                else {
+                    res.status(201).json({
+                        error: "Could not create category"
+                    });
+                }
+            }
+            else {
+                res.status(500).json({
+                    error: "Could not create pool connection"
+                });
+            }
         }
     }
     catch (error) {

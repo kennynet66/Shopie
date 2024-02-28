@@ -10,18 +10,26 @@ import mssql from 'mssql';
 import { sqlConfig } from "../Config/sql.config";
 import { Product } from "../Interface/product.Interface";
 import { v4 } from "uuid";
+import { newProductSchema } from "../Validators/product.validator";
 
 export const createProduct = (async (req: Request, res: Response) => {
     try {
-        // Create a pool connection
+        // get the request body
+        const product: Product = req.body
+        // Generate a unique id for each product
+        const productId = v4();
+        // Validate the data using joi
+        const { error } = newProductSchema.validate(req.body);
+
+        if(error){
+            return res.json({
+                error: error.details[0].message
+            })
+        } else {
+            // Create a pool connection
         const pool = await mssql.connect(sqlConfig)
         // Check if the pool connection was made
         if (pool.connected) {
-            // get the request body
-            const product: Product = req.body
-            console.log(product);
-            // Generate a unique id for each product
-            const productId = v4();
             // Send the data to the database
             const result = (await pool.request()
                 .input('productId', mssql.VarChar, productId)
@@ -50,6 +58,8 @@ export const createProduct = (async (req: Request, res: Response) => {
                 error: "Could not create pool connection"
             })
         }
+        }
+        
     } catch (error) {
         res.status(500).json({
             error
