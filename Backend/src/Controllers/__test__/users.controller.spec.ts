@@ -136,3 +136,8 @@ describe('Gets a single user', ()=>{
         expect(res.json).toHaveBeenCalledWith({ error: "An error occurred while fetching member." });
     })
 })
+
+//test for deleteUser
+
+
+//test for updateUser
