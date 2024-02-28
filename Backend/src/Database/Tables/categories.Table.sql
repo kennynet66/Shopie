@@ -5,6 +5,8 @@
  */
 
  CREATE TABLE Categories(
-    categoryID VARCHAR(255) PRIMARY KEY,
+    categoryId VARCHAR(255) NOT NULL PRIMARY KEY,
     categoryName VARCHAR(255)
  )
+
+DROP TABLE Categories

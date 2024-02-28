@@ -14,8 +14,10 @@
     descr TEXT,
     productQuantity INT,
     productPrice MONEY,
+    productImage VARCHAR(255),
     productCategory VARCHAR(255) NOT NULL,
-    CONSTRAINT FK_Products  FOREIGN KEY (productCategory)
+    CONSTRAINT FK_Products_category  FOREIGN KEY (productCategory)
     REFERENCES Categories(categoryId),
  )
 
+ALTER TABLE Products ADD productImage VARCHAR(255)

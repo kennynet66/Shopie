@@ -1,0 +1,10 @@
+###  Create a  new product
+POST http://localhost:4200/categories/new-category
+Content-Type: application/json
+
+{
+    "categoryName": "Electronics"
+}
+
+### Fetch all categories
+GET http://localhost:4200/categories/all-categories
