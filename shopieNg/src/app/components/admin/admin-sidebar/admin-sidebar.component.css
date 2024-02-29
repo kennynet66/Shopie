@@ -1,0 +1,28 @@
+.admin-sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100vh;
+  border: 2px solid red;
+  max-width: 200px;
+  padding: 10px;
+  align-items: center;
+}
+
+.shopie-logo{
+  width: 150px;
+  height: 100px;
+  object-fit: contain;
+}
+
+
+.links {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  gap: 20px;
+}
+
+.links > li {
+  cursor: pointer;
+}

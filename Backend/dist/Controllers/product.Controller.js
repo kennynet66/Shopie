@@ -4,6 +4,7 @@
     @ getAllProducts - Queries the database and returns all the available products
     @ getOneProduct - Gets the details of one product from the db using it's id
     @ deleteProduct - Deletes the product from the db using it's id
+    @ getCategoryProducts - Gets all products in a certain category by the category id
  */
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -18,7 +19,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteProduct = exports.getOneProduct = exports.getAllProducts = exports.createProduct = void 0;
+exports.getCategoryProducts = exports.deleteProduct = exports.getOneProduct = exports.getAllProducts = exports.createProduct = void 0;
 const mssql_1 = __importDefault(require("mssql"));
 const sql_config_1 = require("../Config/sql.config");
 const uuid_1 = require("uuid");
@@ -155,6 +156,33 @@ exports.deleteProduct = ((req, res) => __awaiter(void 0, void 0, void 0, functio
             // Return an error if there was an issue when creating the connection
             return res.status(500).json({
                 error: "Could not create pool connection"
+            });
+        }
+    }
+    catch (error) {
+        res.status(500).json({
+            error
+        });
+    }
+}));
+exports.getCategoryProducts = ((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        // Get the id from the params
+        const categoryId = req.params.categoryId;
+        // Create a pool connection
+        const pool = yield mssql_1.default.connect(sql_config_1.sqlConfig);
+        // Query the db to get all the products that match the category id
+        const products = (yield pool.request()
+            .input('categoryId', mssql_1.default.VarChar(), categoryId)
+            .execute('getCategoryProducts')).recordset;
+        if (products.length >= 1) {
+            res.status(200).json({
+                products
+            });
+        }
+        else {
+            res.status(201).json({
+                error: "No products in this category"
             });
         }
     }
