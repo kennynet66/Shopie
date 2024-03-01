@@ -2,8 +2,8 @@ import { Request, Response } from "express";
 import mssql from 'mssql';
 import { sqlConfig } from "../Config/sql.config";
 import { v4 } from "uuid";
-import { Category } from "../Interface/category.Interface";
 import { newCategorySchema } from "../Validators/category.validator";
+import { Category } from "../interface/category.Interface";
 
 export const createCategory = (async (req: Request, res: Response) => {
     try {
@@ -61,7 +61,7 @@ export const getAllCategories = (async (req: Request, res: Response) => {
     if (pool.connected) {
         // Query the db for all categories
         const categories = (await pool.request()
-        .query('SELECT * FROM Categories')
+        .execute('getAllCategories')
         ).recordset
 
         if(categories.length >=1){

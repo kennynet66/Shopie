@@ -28,12 +28,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importStar(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
-const product_Routes_1 = __importDefault(require("./routes/product.Routes"));
-const category_Routes_1 = __importDefault(require("./routes/category.Routes"));
 const sql_config_1 = require("./Config/sql.config");
 const mssql_1 = __importDefault(require("mssql"));
-const user_router_1 = __importDefault(require("./routes/user.router"));
-const auth_router_1 = __importDefault(require("./routes/auth.router"));
+const product_Routes_1 = __importDefault(require("./Routes/product.Routes"));
+const category_Routes_1 = __importDefault(require("./Routes/category.Routes"));
+const user_router_1 = __importDefault(require("./Routes/user.router"));
+const auth_router_1 = __importDefault(require("./Routes/auth.router"));
 const app = (0, express_1.default)();
 dotenv_1.default.config();
 app.use((0, express_1.json)());

@@ -70,7 +70,7 @@ exports.getAllCategories = ((req, res) => __awaiter(void 0, void 0, void 0, func
     if (pool.connected) {
         // Query the db for all categories
         const categories = (yield pool.request()
-            .query('SELECT * FROM Categories')).recordset;
+            .execute('getAllCategories')).recordset;
         if (categories.length >= 1) {
             res.status(200).json({
                 categories
