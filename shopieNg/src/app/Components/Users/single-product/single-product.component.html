@@ -1,0 +1,41 @@
+<app-navbar></app-navbar>
+
+<div class="product-view">
+    <div class="product-image">
+      <img src="{{product?.image}}" alt="Product Image">
+    </div>
+
+    <div class="product-details">
+      <h2 class="product-name">{{product?.title}}</h2>
+      <p class="product-price">{{product?.price}}</p>
+  
+  
+  
+      <p class="product-description">{{product?.description}}</p>
+      <p class="category">{{product?.category}}</p>
+      <p class="rating">{{product?.rating}}</p>
+  
+      <div class="action-buttons">
+        <button class="buy-now-button">Buy It Now</button>
+        <button class="add-to-cart-button">Add to Cart</button>
+      </div>
+    </div>
+</div>
+
+  <hr>
+
+<div class="similar-products">
+  <div>Similar Products</div>
+    <div class="product-grid" *ngFor="let product of products.slice(0, 6); let i = index">
+        <div class="product-card">
+            <div><img src="" alt=""></div>
+            <div>
+                <p>{{product?.title}}</p>
+                <p>{{product?.price}}</p>
+                <p>{{product?.description}}</p>
+                <p>{{product?.rating}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+  

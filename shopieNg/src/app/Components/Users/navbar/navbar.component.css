@@ -1,0 +1,52 @@
+.navbar {
+    background-color: white;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #000000; 
+}
+
+.logo-img {
+    height: 5rem;
+    width: 5rem;
+    margin-right: 0.5rem;
+}
+
+.search-input {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    outline: none;
+    transition: border 0.3s ease-in-out;
+}
+
+.search-input:focus {
+    border: 1px solid #000000;
+}
+
+.category-select {
+    border: 1px solid #000000;
+    border-radius: 0.25rem;
+    padding: 0.5rem 1rem;
+}
+
+.search-button {
+    background-color: #2E91D9;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+
+.login-link {
+    color: #000000;
+}
+
+.cart-icon{
+    height: 1rem;
+    width: 1rem;
+    /* margin-right: 0.5rem; */
+}

@@ -1,0 +1,31 @@
+.cart-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 30vh; 
+  }
+  
+  .placeholder {
+    font-size: 18px;
+    color: #888;
+  }
+  
+  .cart-item {
+   
+  }
+
+  .empty-cart-placeholder {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .checkout-button {
+    margin-top: auto; 
+    background-color: #2e91d9;
+    color: #ffffff; 
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+  }

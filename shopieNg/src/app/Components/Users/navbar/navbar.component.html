@@ -1,0 +1,34 @@
+<nav class="navbar">
+    <div class="logo">
+        <img src="../../../../assets/b7ee8e7b-cd1e-488e-a294-e137cbfb9eaf-removebg-preview.png" alt="Logo" class="logo-img">
+    </div>
+
+    <div class="search-bar">
+        <input
+            type="text"
+            placeholder="Search for anything"
+            class="search-input"
+        />
+    </div>
+
+    <div class="category-dropdown">
+        <select class="category-select">
+            <option>All Categories</option>
+            <option>Sneakers</option>
+            <option>Electronics</option>
+            <option>Books</option>
+            <option>Collectibles</option>
+        </select>
+    </div>
+<!-- 
+    <li routerLink="/register" *ngIf="!isLoggedIn" class="register">Register</li>
+            <li routerLink="/login" *ngIf="!isLoggedIn" class="login" data-cy="login">Login</li> -->
+
+    <button class="search-button">Search</button>
+
+    <div class="cart-icon" (click)="navigateToCart()">
+        <img class="cart-icon" src="../../../../assets/cart-icon.png" alt="cart-icon" >
+    </div>
+
+    <a href="#" class="login-link">Login</a>
+</nav>

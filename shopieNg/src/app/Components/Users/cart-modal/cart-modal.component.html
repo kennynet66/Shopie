@@ -1,0 +1,20 @@
+<app-navbar></app-navbar>
+
+
+<div class="cart-container" [style.height]="cartItems.length > 0 ? 'auto' : '100vh'">
+    <div class="cart-items" *ngIf="cartItems.length > 0; else noItems">
+      <div *ngFor="let item of cartItems" class="cart-item">
+        <!-- <p>{{ item.name }} - ${{ item.price }}</p> -->
+      </div>
+    </div>
+
+    <button class="checkout-button">Checkout</button>
+  
+    <ng-template #noItems>
+      <div class="empty-cart-placeholder">
+        <p>You don't have any items in your cart</p>
+      </div>
+    </ng-template>
+  
+    <button class="checkout-button">Checkout</button>
+  </div>
