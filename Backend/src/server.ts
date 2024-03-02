@@ -6,12 +6,14 @@ import productRoutes from './Routes/product.Routes';
 import categoryRoutes from './Routes/category.Routes';
 import userRouter from './Routes/user.router';
 import authRouter from './Routes/auth.router';
+import cors from 'cors';
 
 const app = express();
 
 dotenv.config();
 
 app.use(json());
+app.use(cors())
 
 // Import product routes
 app.use('/products', productRoutes);

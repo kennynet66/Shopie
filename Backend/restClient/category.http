@@ -3,7 +3,10 @@ POST http://localhost:3000/categories/new-category
 Content-Type: application/json
 
 {
+    "categoryName": "Shoes"
 }
 
 ### Fetch all categories
 GET http://localhost:3000/categories/all-categories
+
+### 

@@ -1,17 +1,20 @@
 <div class="admin-sidebar">
-  <div class="logo">
+  <div class="wrapper">
+    <div class="logo">
     <img class="shopie-logo" src="../../../../assets/b7ee8e7b-cd1e-488e-a294-e137cbfb9eaf-removebg-preview (1).png" alt="">
   </div>
   <div>
     <ul class="links">
-      <li>Dashboard</li>
-      <li>Orders</li>
-      <li>Products</li>
-      <li>Customers</li>
-      <li>Messages</li>
-      <li>Settings</li>
+      <li><i class="fa-solid fa-square-poll-vertical"></i> Dashboard</li>
+      <li><i class="fa-solid fa-scroll"></i> Orders</li>
+      <li routerLink="products"><i class="fa-solid fa-bag-shopping"></i> Products</li>
+      <li routerLink="customers"> <i class="fa-solid fa-users"></i> Customers</li>
+      <li routerLink="new-product"><i class="fa-solid fa-plus"></i> New product</li>
+      <li><i class="fa-solid fa-gear"></i> Settings</li>
     </ul>
   </div>
+  </div>
+  
   <div class="email">
     admin&#64;shopie.com
   </div>

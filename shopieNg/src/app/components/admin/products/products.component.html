@@ -1,0 +1,17 @@
+<section class="products">
+  <div class="cards">
+    <div class="card" *ngFor="let products of productsarr; let i = index">
+      <div class="product-img-div">
+        <img class="product-img" src="{{products.productImage}}" alt="product Image">
+      </div>
+      <div class="product">
+        <h1 class="product-title">{{products.productName}}</h1>
+        <p class="product-desc"></p>
+      </div>
+      <div class="product-actions">
+        <button>Delete</button>
+        <button>Edit</button>
+      </div>
+    </div>
+  </div>
+</section>

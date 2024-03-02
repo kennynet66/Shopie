@@ -1,0 +1,35 @@
+.products{
+  width: 80vw;
+}
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.card {
+  background-color: #f2f2f2;
+  cursor: pointer;
+  max-width: 400px;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 5px 0 3px  #dbdbdd;
+  display: flex;
+  gap: 20px;
+}
+
+.card:hover {
+  background-color: #dbdbdd;
+}
+
+.product-img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+.product-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

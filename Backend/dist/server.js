@@ -34,9 +34,11 @@ const product_Routes_1 = __importDefault(require("./Routes/product.Routes"));
 const category_Routes_1 = __importDefault(require("./Routes/category.Routes"));
 const user_router_1 = __importDefault(require("./Routes/user.router"));
 const auth_router_1 = __importDefault(require("./Routes/auth.router"));
+const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
 dotenv_1.default.config();
 app.use((0, express_1.json)());
+app.use((0, cors_1.default)());
 // Import product routes
 app.use('/products', product_Routes_1.default);
 // Import category routes

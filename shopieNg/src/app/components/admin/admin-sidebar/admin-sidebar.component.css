@@ -1,11 +1,9 @@
 .admin-sidebar {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   height: 100vh;
-  border: 2px solid red;
-  max-width: 200px;
-  padding: 10px;
+  width: 20vw;
   align-items: center;
 }
 
@@ -25,4 +23,8 @@
 
 .links > li {
   cursor: pointer;
+}
+
+i {
+  color: dodgerblue;
 }
