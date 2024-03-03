@@ -57,7 +57,7 @@ export const getAllCategories = (async (req: Request, res: Response) => {
         // if(categories.length >=1){
             res.status(200).json({
                 success: "Found some categories",
-                categories: categories
+                categories
             })
         // } else {
         //     res.status(201).json({
