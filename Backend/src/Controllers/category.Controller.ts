@@ -14,14 +14,12 @@ export const createCategory = (async (req: Request, res: Response) => {
         // Verify the data using joi
         let { error } = newCategorySchema.validate(categoryDetails)
         if(error){
-            return res.json({
+            return res.status(202).json({
                 error: error.details[0].message
             })
         } else{
             // Create a pool connection
         const pool = await mssql.connect(sqlConfig);
-        // Check if pool connection was created
-        if (pool.connected) {
 
             const result = (await pool.request()
                 .input('categoryId', mssql.VarChar, categoryId)
@@ -39,12 +37,7 @@ export const createCategory = (async (req: Request, res: Response) => {
                 })
             }
 
-        } else {
-            res.status(500).json({
-                error: "Could not create pool connection"
-            })
-
-        }
+        
         }
         
     } catch (error) {
@@ -57,25 +50,19 @@ export const createCategory = (async (req: Request, res: Response) => {
 export const getAllCategories = (async (req: Request, res: Response) => {
     // Create a pool connection
     const pool = await mssql.connect(sqlConfig)
-    // check if the pool connection has been made
-    if (pool.connected) {
         // Query the db for all categories
         const categories = (await pool.request()
-        .execute('getAllCategories')
-        ).recordset
+        .execute('getAllCategories')).recordset
 
-        if(categories.length >=1){
+        // if(categories.length >=1){
             res.status(200).json({
-                categories
+                success: "Found some categories",
+                categories: categories
             })
-        } else {
-            res.status(201).json({
-                error: "No products available"
-            })
-        }
-    } else {
-        res.status(500).json({
-            error: "Could not create pool connection"
-        })
+        // } else {
+        //     res.status(201).json({
+        //         error: "No products available"
+        //     })
+        // }
     }
-})
+)

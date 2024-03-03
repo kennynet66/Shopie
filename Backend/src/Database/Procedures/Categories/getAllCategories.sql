@@ -1,4 +1,4 @@
-CREATE OR ALTER PROCEDURE getAllCategories()
+CREATE OR ALTER PROCEDURE getAllCategories
 AS
 BEGIN
     SELECT * FROM Categories

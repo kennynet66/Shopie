@@ -38,3 +38,8 @@
   border-radius: 10px;
   cursor: pointer;
 }
+
+.usernames {
+  background-color: 2px solid red;
+  display: flex;
+}
