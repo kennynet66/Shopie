@@ -1,17 +1,19 @@
 import express, { json, Response, Request, NextFunction } from 'express';
 import dotenv from 'dotenv';
-import productRoutes from './routes/product.Routes';
-import categoryRoutes from './routes/category.Routes';
 import { sqlConfig } from './Config/sql.config';
 import mssql, { ConnectionPool } from 'mssql';
-import userRouter from './routes/user.router';
-import authRouter from './routes/auth.router';
+import productRoutes from './Routes/product.Routes';
+import categoryRoutes from './Routes/category.Routes';
+import userRouter from './Routes/user.router';
+import authRouter from './Routes/auth.router';
+import cors from 'cors';
 
 const app = express();
 
 dotenv.config();
 
 app.use(json());
+app.use(cors())
 
 // Import product routes
 app.use('/products', productRoutes);

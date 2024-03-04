@@ -1,0 +1,9 @@
+.admin-dashboard
+{
+  display: flex;
+  max-width: 800px;
+}
+
+.content {
+  width: 80vw;
+}

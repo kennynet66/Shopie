@@ -28,16 +28,40 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importStar(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
-const product_Routes_1 = __importDefault(require("./routes/product.Routes"));
-const category_Routes_1 = __importDefault(require("./routes/category.Routes"));
+const sql_config_1 = require("./Config/sql.config");
+const mssql_1 = __importDefault(require("mssql"));
+const product_Routes_1 = __importDefault(require("./Routes/product.Routes"));
+const category_Routes_1 = __importDefault(require("./Routes/category.Routes"));
+const user_router_1 = __importDefault(require("./Routes/user.router"));
+const auth_router_1 = __importDefault(require("./Routes/auth.router"));
+const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
 dotenv_1.default.config();
 app.use((0, express_1.json)());
+app.use((0, cors_1.default)());
 // Import product routes
 app.use('/products', product_Routes_1.default);
 // Import category routes
 app.use('/categories', category_Routes_1.default);
 const PORT = process.env.PORT;
-app.listen(PORT, () => {
-    console.log(`app is listening on port ${PORT}`);
+app.use('/user', user_router_1.default);
+app.use('/auth', auth_router_1.default);
+app.use((error, req, res, next) => {
+    res.status(500).json({
+        error
+    });
+});
+mssql_1.default.connect(sql_config_1.sqlConfig, (err, connect, req, res) => {
+    if (err) {
+        res === null || res === void 0 ? void 0 : res.status(500).json({
+            err
+        });
+    }
+    else if (connect) {
+        console.log("connected to mssql db");
+        const PORT = process.env.PORT;
+        app.listen(PORT, () => {
+            console.log('App is listening on port', PORT);
+        });
+    }
 });

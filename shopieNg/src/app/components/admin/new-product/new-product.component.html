@@ -1,0 +1,65 @@
+<section class="new-product">
+  <div class="search-bar">
+    <input type="search" name="search" id="search" placeholder="search for...">
+  </div>
+  <div class="content">
+    <div class="form" [formGroup]="createProductForm" ngSubmit="createProduct()">
+      <form>
+        <h2>Add Product</h2>
+        <div class="input-div">
+          <label for="product-name">Product Name:</label>
+          <input type="text" name="product-name" formControlName="productName" id="product-name">
+        </div>
+        <div class="input-div">
+          <label for="product-desc">Product description:</label>
+          <input type="text" name="product-desc" formControlName="descr" id="product-desc">
+        </div>
+        <div class="input-div">
+          <label for="product-qty">Product quantity:</label>
+          <input type="number" name="" id="" formControlName="productQuantity">
+        </div>
+
+        <div class="input-div">
+          <label for="product-price">Product price</label>
+          <input type="number" name="" formControlName="productPrice" id="">
+        </div>
+
+        <div class="input-div">
+          <label for="product-img">Product image:</label>
+          <input type="text" formControlName="productImage">
+        </div>
+
+        <div class="input-div">
+          <label for="product-category">Select category: </label>
+          <select name="select" id="" formControlName="productCategory">
+            <option value="">--Select category--</option>
+            <option *ngFor="let category of categoryarr; let i = index" value="{{category.categoryId}}">
+              {{category.categoryName}}</option>
+          </select>
+        </div>
+        <div class="input-div">
+          <button type="submit" (click)="createProduct(createProductForm.value)" class="submit-btn">Save</button>
+        </div>
+      </form>
+    </div>
+    <div class="products">
+      <div class="cards">
+        <div class="card" *ngFor="let products of productsarr; let i = index">
+          <div class="product-img-div">
+            <img class="product-img" src="{{products.productImage}}" alt="product Image">
+          </div>
+          <div class="product">
+            <h1 class="product-title">{{products.productName}}</h1>
+            <p class="product-desc"></p>
+          </div>
+          <div class="product-actions">
+            <i class="fa-solid fa-trash"></i>
+            <!-- <button class="delete" (click)="deleteProduct(products.productId)">Delete</button> -->
+            <button class="edit">Edit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>

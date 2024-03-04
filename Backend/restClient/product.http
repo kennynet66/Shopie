@@ -1,18 +1,22 @@
 ### Create a new product
-POST http://localhost:4200/products/new-product
+POST http://localhost:3000/products/new-product
 Content-Type: application/json
 
 {
     "productName": "Juice wrld t-shirt",
     "descr": "This is a descr",
     "productQuantity": 200,
-    "productCategory": "21bc9239-a21d-453d-a6e8-a9e8ef1b34cf",
+    "productImage": "https://i.ebayimg.com/images/g/GJcAAOSwMb9is9wL/s-l1200.webp",
+    "productCategory": "6dfe9ab8-30ed-4008-b904-43d534d2a4c9",
     "productPrice": 600
 }
 
 ### Get all products
-GET http://localhost:4200/products/all-products
+GET http://localhost:3000/products/all-products
 
 ### Delete a product
 
-DELETE http://localhost:4200/products/delete-product/b6b28b75-5108-4261-80e4-b2e3ae04e6e8
+DELETE http://localhost:3000/products/delete-product/0bd1f651-f463-4b35-82ff-4ce81afacde7
+
+### Get category products
+GET http://localhost:3000/products/category-products/aed2ae09-81b2-4532-ba16-421d498af6b3

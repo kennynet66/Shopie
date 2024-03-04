@@ -16,16 +16,23 @@ exports.getAllCategories = exports.createCategory = void 0;
 const mssql_1 = __importDefault(require("mssql"));
 const sql_config_1 = require("../Config/sql.config");
 const uuid_1 = require("uuid");
+const category_validator_1 = require("../Validators/category.validator");
 exports.createCategory = ((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        // Create a pool connection
-        const pool = yield mssql_1.default.connect(sql_config_1.sqlConfig);
-        // Check if pool connection was created
-        if (pool.connected) {
-            // Generate a unique id for 
-            const categoryId = (0, uuid_1.v4)();
-            // Get the category data from the req.body
-            const categoryDetails = req.body;
+        // Generate a unique id for 
+        const categoryId = (0, uuid_1.v4)();
+        // Get the category data from the req.body
+        const categoryDetails = req.body;
+        // Verify the data using joi
+        let { error } = category_validator_1.newCategorySchema.validate(categoryDetails);
+        if (error) {
+            return res.status(202).json({
+                error: error.details[0].message
+            });
+        }
+        else {
+            // Create a pool connection
+            const pool = yield mssql_1.default.connect(sql_config_1.sqlConfig);
             const result = (yield pool.request()
                 .input('categoryId', mssql_1.default.VarChar, categoryId)
                 .input('categoryName', mssql_1.default.VarChar, categoryDetails.categoryName)
@@ -41,11 +48,6 @@ exports.createCategory = ((req, res) => __awaiter(void 0, void 0, void 0, functi
                 });
             }
         }
-        else {
-            res.status(500).json({
-                error: "Could not create pool connection"
-            });
-        }
     }
     catch (error) {
         res.status(500).json({
@@ -56,25 +58,17 @@ exports.createCategory = ((req, res) => __awaiter(void 0, void 0, void 0, functi
 exports.getAllCategories = ((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // Create a pool connection
     const pool = yield mssql_1.default.connect(sql_config_1.sqlConfig);
-    // check if the pool connection has been made
-    if (pool.connected) {
-        // Query the db for all categories
-        const categories = (yield pool.request()
-            .query('SELECT * FROM Categories')).recordset;
-        if (categories.length >= 1) {
-            res.status(200).json({
-                categories
-            });
-        }
-        else {
-            res.status(201).json({
-                error: "No products available"
-            });
-        }
-    }
-    else {
-        res.status(500).json({
-            error: "Could not create pool connection"
-        });
-    }
+    // Query the db for all categories
+    const categories = (yield pool.request()
+        .execute('getAllCategories')).recordset;
+    // if(categories.length >=1){
+    res.status(200).json({
+        success: "Found some categories",
+        categories: categories
+    });
+    // } else {
+    //     res.status(201).json({
+    //         error: "No products available"
+    //     })
+    // }
 }));
