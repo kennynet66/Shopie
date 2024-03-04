@@ -66,3 +66,32 @@ export const getAllCategories = (async (req: Request, res: Response) => {
         // }
     }
 )
+
+export const getCategoryDetails = (async (req: Request, res: Response)=>{
+    try{
+        const categoryId = req.params.categoryId
+
+        const pool = await mssql.connect(sqlConfig);
+
+        const result = (await pool.request()
+        .input("categoryId", mssql.VarChar, categoryId)
+        .execute('getCategoryDetails')
+        ).recordset
+        if(result.length >=1){
+            return res.status(200).json({
+            result
+        })
+        }else{
+            return res.status(200).json({
+                error: "Category not found"
+            })
+        }
+
+        
+
+    } catch(error){
+        return res.status(500).json({
+            error
+        })
+    }
+})

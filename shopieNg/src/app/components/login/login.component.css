@@ -43,3 +43,8 @@
   background-color: 2px solid red;
   display: flex;
 }
+
+#error {
+  color: red;
+  margin: 1%;
+}

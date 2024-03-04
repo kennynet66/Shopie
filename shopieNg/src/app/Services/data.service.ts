@@ -20,6 +20,6 @@ export class DataService {
     return this.http.post<newProductResponse>('http://localhost:3000/products/new-product', details)
   }
   deleteProduct(productId:string){
-    return this.http.delete<deleteProductResponse>(`http://localhost:3000/products/delete-product/${productId}`)
+    return this.http.delete<deleteProductResponse>(`http://localhost:3000/products/delete/${productId}`)
   }
 }

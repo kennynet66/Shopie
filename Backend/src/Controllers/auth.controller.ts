@@ -13,7 +13,7 @@ export const loginUser = async(req: Request, res: Response)=>{
         let {error} = loginUserSchema.validate(req.body)
 
         if(error){
-            return res.status(404).json({
+            return res.status(201).json({
                 error: error.details[0].message
             })
         }

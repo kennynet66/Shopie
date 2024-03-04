@@ -25,6 +25,10 @@
   cursor: pointer;
 }
 
+.links >li:hover {
+  color: #1e90ff;
+}
+
 i {
   color: dodgerblue;
 }

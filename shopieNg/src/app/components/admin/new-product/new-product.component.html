@@ -45,18 +45,22 @@
     <div class="products">
       <div class="cards">
         <div class="card" *ngFor="let products of productsarr; let i = index">
-          <div class="product-img-div">
             <img class="product-img" src="{{products.productImage}}" alt="product Image">
-          </div>
-          <div class="product">
+          <div class="separator">
+            <div class="product">
             <h1 class="product-title">{{products.productName}}</h1>
-            <p class="product-desc"></p>
+            <p class="product-desc">Price: {{products.productPrice}}</p>
+            <p class="product-desc"><i>Category: {{products.categoryName}}</i></p>
           </div>
           <div class="product-actions">
-            <i class="fa-solid fa-trash"></i>
+            <i class="fa-solid fa-trash" style="color: red;" (click)="deleteProduct(products.productId)"></i>
+            <i class="fa-solid fa-pen-to-square" style="color: #1e90ff;"></i>
             <!-- <button class="delete" (click)="deleteProduct(products.productId)">Delete</button> -->
-            <button class="edit">Edit</button>
+            <!-- <button class="edit">Edit</button> -->
           </div>
+          </div>
+          
+          
         </div>
       </div>
     </div>

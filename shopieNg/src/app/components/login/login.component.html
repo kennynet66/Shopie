@@ -3,14 +3,16 @@
     <img src="../../../assets/b7ee8e7b-cd1e-488e-a294-e137cbfb9eaf-removebg-preview (1).png" class="logo-img" alt="">
   </div>
   <div class="content">
-     <form class="form">
+     <form [formGroup]="loginForm" class="form" (ngSubmit)="loginUser(loginForm.value)">
     <h1>Hello</h1>
     <p>Sign in to Shopie or <a routerLink="/register">create an account</a></p>
     <div class="input-div">
-      <input data-cy="email-input" type="email" placeholder="Email">
+      <input data-cy="email-input" formControlName="email" type="email" placeholder="Email">
+      <div class="email-err" id="error" *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid" data-cy="email-error">Email is required</div>
     </div>
     <div class="input-div">
-      <input data-cy="password-input" type="text" placeholder="Password">
+      <input data-cy="password-input" type="text" formControlName="password" placeholder="Password">
+      <div class="pass-err" id="error" *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid" data-cy="email-error">Password is required</div>
     </div>
     <div class="input-div">
       <input data-cy="submit-login-btn" type="submit" value="Continue" class="submit-btn">

@@ -75,7 +75,7 @@ export const getAllProducts = (async (req: Request, res: Response) =>{
     if(pool.connected){
         // Query the db for all the products
         const products = (await pool.request()
-        .query('SELECT * FROM Products')
+        .execute('getAllProducts')
         ).recordset
         if(products.length >= 1){
             res.status(200).json({
@@ -181,6 +181,43 @@ export const getCategoryProducts = (async(req: Request, res: Response)=>{
         }
     } catch (error) {
         res.status(500).json({
+            error
+        })
+    }
+})
+
+export const updateProduct = (async(req: Request, res: Response) =>{
+    try {
+        // get the request body
+        const product: Product = req.body;
+        console.log(req.body)
+        // Get the product Id from the request params
+        const productId: string = req.params.productId;
+
+        const pool = await mssql.connect(sqlConfig);
+
+        const result = (await pool.request()
+        .input('productId', mssql.VarChar, productId)
+        .input('productName', mssql.VarChar, product.productName)
+        .input('descr', mssql.VarChar, product.descr)
+        .input('productQuantity', mssql.Int, product.productQuantity)
+        .input('productImage', mssql.VarChar, product.productImage)
+        .input('productCategory', mssql.VarChar, product.productCategory)
+        .input('productPrice', mssql.Money, product.productPrice)
+        .execute('updateProduct')
+        ).rowsAffected
+
+        if(result[0] >= 1){
+            return res.status(200).json({
+                success: "Product updated successfully"
+            })
+        } else {
+            return res.status(201).json({
+                error: "Error updating product"
+            })
+        }
+    }catch(error){
+        return res.status(500).json({
             error
         })
     }

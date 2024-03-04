@@ -37,6 +37,7 @@ export class NewProductComponent {
 
         if(res.success) {
           this.productsarr = [];
+          this.createProductForm.reset()
           this.displayProducts();
         }
       })
@@ -67,4 +68,5 @@ export class NewProductComponent {
       }
     })
   }
+  categoryDetails(categoryId: string){}
 }

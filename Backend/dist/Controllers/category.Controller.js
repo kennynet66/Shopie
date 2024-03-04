@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllCategories = exports.createCategory = void 0;
+exports.getCategoryDetails = exports.getAllCategories = exports.createCategory = void 0;
 const mssql_1 = __importDefault(require("mssql"));
 const sql_config_1 = require("../Config/sql.config");
 const uuid_1 = require("uuid");
@@ -64,11 +64,35 @@ exports.getAllCategories = ((req, res) => __awaiter(void 0, void 0, void 0, func
     // if(categories.length >=1){
     res.status(200).json({
         success: "Found some categories",
-        categories: categories
+        categories
     });
     // } else {
     //     res.status(201).json({
     //         error: "No products available"
     //     })
     // }
+}));
+exports.getCategoryDetails = ((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const categoryId = req.params.categoryId;
+        const pool = yield mssql_1.default.connect(sql_config_1.sqlConfig);
+        const result = (yield pool.request()
+            .input("categoryId", mssql_1.default.VarChar, categoryId)
+            .execute('getCategoryDetails')).recordset;
+        if (result.length >= 1) {
+            return res.status(200).json({
+                result
+            });
+        }
+        else {
+            return res.status(200).json({
+                error: "Category not found"
+            });
+        }
+    }
+    catch (error) {
+        return res.status(500).json({
+            error
+        });
+    }
 }));

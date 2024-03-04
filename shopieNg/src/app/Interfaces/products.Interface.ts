@@ -3,6 +3,7 @@ export interface Products {
     {
       productId: string,
       productName: string,
+      categoryName: string,
       descr: string,
       productQuantity: number,
       productPrice: number,
@@ -16,6 +17,7 @@ export interface Products {
 export interface product {
   productId: string,
   productName: string,
+  categoryName: string,
   descr: string,
   productQuantity: number,
   productPrice: number,

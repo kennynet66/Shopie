@@ -9,4 +9,5 @@ Content-Type: application/json
 ### Fetch all categories
 GET http://localhost:3000/categories/all-categories
 
-### 
+### get a single category
+GET http://localhost:3000/categories/6dfe9ab8-30ed-4008-b904-43d534d2a4c9

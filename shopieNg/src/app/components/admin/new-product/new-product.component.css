@@ -73,11 +73,18 @@ label{
   border-radius: 5px;
   box-shadow: 5px 0 3px  #dbdbdd;
   display: flex;
-  justify-content: space-between;
+  gap: 20px;
+  /* justify-content: space-between; */
 }
 
 .card:hover {
   background-color: #dbdbdd;
+}
+
+.separator{
+  width: 90%;
+  justify-content: space-between;
+  display: flex;
 }
 
 .product-img {
