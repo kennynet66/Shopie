@@ -1,17 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CartModalComponent } from './cart-modal.component';
 
-describe('CartModalComponent', () => {
-  let component: CartModalComponent;
-  let fixture: ComponentFixture<CartModalComponent>;
+import { NotfoundComponent } from './404.component';
+
+describe('404Component', () => {
+  let component: NotfoundComponent;
+  let fixture: ComponentFixture<NotfoundComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CartModalComponent]
+      imports: [NotfoundComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(CartModalComponent);
+    fixture = TestBed.createComponent(NotfoundComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

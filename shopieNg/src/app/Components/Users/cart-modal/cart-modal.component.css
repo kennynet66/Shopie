@@ -29,3 +29,18 @@
     border: none;
     cursor: pointer;
   }
+
+  .close-cart-button{
+    margin-top: auto; 
+    background-color: #2e91d9;
+    color: #ffffff; 
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .cart-container {
+    transition: height 0.3s ease; 
+  }
+  

@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { loginDetails } from '../Interfaces/login.interface';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +21,12 @@ export class AuthService {
         'token': token
       })
     })
+  }
+
+  // Mock user data for demonstration purposes
+  currentUser: { id: number, username: string } = { id: 5, username: 'exampleUser' };
+
+  getCurrentUser(): Observable<{ id: number, username: string }> {
+    return of(this.currentUser);
   }
 }

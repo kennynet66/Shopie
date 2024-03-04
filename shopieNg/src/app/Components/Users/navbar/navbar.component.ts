@@ -1,19 +1,29 @@
 import { Component } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common'
+import { CartService } from '../../../Services/cart.service';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [ CommonModule, RouterLink, RouterOutlet, ],
+  imports: [ CommonModule, RouterLink, RouterOutlet],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
 
 export class NavbarComponent {
-  constructor(private router: Router) {} 
+  constructor(private router: Router, private cartService: CartService) {} 
 
-  navigateToCart(){
-    this.router.navigate(['/cart-modal']);
+  navigateToHome(){
+    this.router.navigate([' ']);
   }
+
+  // navigateToCart(){
+  //   this.router.navigate(['/cart-modal']);
+  // }
+
+  openCart() {
+    this.cartService.openCart();
+  }
+  
 }

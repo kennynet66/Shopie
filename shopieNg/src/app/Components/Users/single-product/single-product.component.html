@@ -6,36 +6,38 @@
     </div>
 
     <div class="product-details">
-      <h2 class="product-name">{{product?.title}}</h2>
-      <p class="product-price">{{product?.price}}</p>
+      <h2 class="product-name"><b></b>{{product?.title}}</h2>
+      <p class="product-price"><b>$</b>{{product?.price}}</p>
   
   
   
-      <p class="product-description">{{product?.description}}</p>
-      <p class="category">{{product?.category}}</p>
-      <p class="rating">{{product?.rating}}</p>
+      <p class="product-description"><b>Description:</b> {{product?.description}}</p>
+      <p class="category"><b>Category:</b> {{product?.category}}</p>
+      <p class="rating"><b>Rating:</b> {{product?.rating}}</p>
   
       <div class="action-buttons">
-        <button class="buy-now-button">Buy It Now</button>
-        <button class="add-to-cart-button">Add to Cart</button>
+        <!-- <button class="buy-now-button">Buy It Now</button> -->
+        <button class="add-to-cart-button" (click)="addToCart(product)">Add to Cart</button>
       </div>
     </div>
 </div>
 
   <hr>
 
-<div class="similar-products">
-  <div>Similar Products</div>
-    <div class="product-grid" *ngFor="let product of products.slice(0, 6); let i = index">
-        <div class="product-card">
-            <div><img src="" alt=""></div>
-            <div>
-                <p>{{product?.title}}</p>
-                <p>{{product?.price}}</p>
-                <p>{{product?.description}}</p>
-                <p>{{product?.rating}}</p>
-            </div>
+  <div class="similar-products" *ngIf="products.length > 0">
+    <div>Similar Products</div>
+    <div class="product-grid" *ngFor="let product of products; let i = index">
+      <div class="product-card" (click)="navigateToSingleProduct(product.id.toString())">
+        <div><img src="{{product?.image}}" alt=""></div>
+        <div>
+          <p><b>{{product?.title}}</b></p>
+          <p><b>$</b> {{product?.price}} </p>
+          <!-- <p>{{product?.description}}</p> -->
+          <p><b>Rating:</b> {{product.rating.rate}} </p>
         </div>
+      </div>
     </div>
-</div>
+  </div>
+  
+  
   

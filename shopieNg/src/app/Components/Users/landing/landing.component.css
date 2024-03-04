@@ -17,14 +17,14 @@
 /* landing.component.css */
 
 .category-container{
-  background-color: #2E91D9;
+  /* background-color: #2E91D9; */
 }
 
 .product-grid {
   display: grid;
   /* flex-direction: row;
   flex-wrap: wrap; */
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   justify-content: space-between;
 }
 
@@ -37,7 +37,9 @@
 }
 
 .product-card img {
-  max-width: 100%; /* Image takes full width of the card */
+  /* max-width: 100%;  */
+  max-width: 200px; 
+  max-height: 200px;
   height: auto;
 }
 
@@ -53,7 +55,7 @@
 
 .product-card .price {
   font-size: 18px;
-  color: #2E91D9; /* Use your desired color for the price */
+  color: #2E91D9; 
 }
 
 

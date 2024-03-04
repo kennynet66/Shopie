@@ -1,5 +1,5 @@
 <nav class="navbar">
-    <div class="logo">
+    <div class="logo" (click)="navigateToHome()">
         <img src="../../../../assets/b7ee8e7b-cd1e-488e-a294-e137cbfb9eaf-removebg-preview.png" alt="Logo" class="logo-img">
     </div>
 
@@ -13,11 +13,10 @@
 
     <div class="category-dropdown">
         <select class="category-select">
-            <option>All Categories</option>
-            <option>Sneakers</option>
             <option>Electronics</option>
-            <option>Books</option>
-            <option>Collectibles</option>
+            <option>jewelery</option>
+            <option>men's clothing</option>
+            <option>women's clothing</option>
         </select>
     </div>
 <!-- 
@@ -26,7 +25,7 @@
 
     <button class="search-button">Search</button>
 
-    <div class="cart-icon" (click)="navigateToCart()">
+    <div class="cart-icon" (click)="openCart()">
         <img class="cart-icon" src="../../../../assets/cart-icon.png" alt="cart-icon" >
     </div>
 

@@ -6,30 +6,23 @@
 
  <hr>
 
-<div class="category-container">
-  <!-- <h2>{{ category }}</h2> -->
-  <div class="product-grid" *ngFor="let product of products; let i = index">
-    <div class="product-card" (click)="navigateToSingleProduct(product.id)">
+ <div class="category-container">
+  <div class="product-grid" *ngFor="let category of products; let i = index">
+    <!-- <h2>{{ category.category }}</h2> -->
+    <div *ngFor="let product of category.products; let j = index" class="product-card" (click)="navigateToSingleProduct(product.id.toString())">
       <div><img src="{{product.image}}" alt=""></div>
       <div>
-        <p>{{product.title}}</p>
-        <p>$ {{product.price}}</p>
-        <p>{{product.description}}</p>
-        <p>{{product.category}}</p>
-        <p>{{product.rating.rate}}</p>
+        <p><b>{{product.title}}</b></p>
+        <p><b>$</b> {{product.price}}</p>
+        <!-- <p>{{product.description}}</p> -->
+        <p><b>Category</b> {{product.category}}</p>
+        <p><b>Rating</b> {{product.rating.rate}}</p>
       </div>
     </div>
   </div>
 </div>
 
-
  <hr>
-
-
-
- <hr>
-
-
 
  <div class="carousel">
     <img src="../../../../assets/adidas_Gazelle_(evergreen_assets)SecondaryA.webp" alt="advert" class="advert">

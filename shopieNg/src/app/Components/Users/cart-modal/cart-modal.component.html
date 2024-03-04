@@ -1,20 +1,21 @@
-<app-navbar></app-navbar>
 
-
-<div class="cart-container" [style.height]="cartItems.length > 0 ? 'auto' : '100vh'">
-    <div class="cart-items" *ngIf="cartItems.length > 0; else noItems">
-      <div *ngFor="let item of cartItems" class="cart-item">
-        <!-- <p>{{ item.name }} - ${{ item.price }}</p> -->
+<div class="cart-container" [style.height]="isCartOpen ? 'auto' : '0'">
+  <div class="cart-items" *ngIf="cartItems.length > 0; else noItems">
+    <div *ngFor="let cart of cartItems" class="cart-item">
+      <div *ngFor="let product of cart.products" class="product-item">
+        <p>{{ product.title }} - ${{ product.price }} - Quantity: {{ product.quantity }}</p>
       </div>
     </div>
-
-    <button class="checkout-button">Checkout</button>
-  
-    <ng-template #noItems>
-      <div class="empty-cart-placeholder">
-        <p>You don't have any items in your cart</p>
-      </div>
-    </ng-template>
-  
-    <button class="checkout-button">Checkout</button>
   </div>
+
+  <ng-template #noItems>
+    <div class="empty-cart-placeholder">
+      <p>You don't have any items in your cart</p>
+    </div>
+  </ng-template>
+
+  
+  <button class="checkout-button">Checkout</button>
+  <button class="close-cart-button" (click)="closeCart()">Close</button>
+  
+</div>

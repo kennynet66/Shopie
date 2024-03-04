@@ -1,0 +1,52 @@
+body {
+    background-image: url('https://mycomputerworks.com/wp-content/uploads/2017/05/joomla-404-error-page.png');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+  }
+
+  
+  
+  img {
+    width: 80%;
+    height: 45%;
+    /* object-fit: cover;  */
+  }
+
+/* footerstyle */
+.footer {
+    background-color: #ffffff;
+    color: #000000;
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .footer-column {
+    flex: 1;
+    margin-right: 20px;
+  }
+  
+  .footer h4 {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+  
+  .footer ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer li {
+    margin-bottom: 8px;
+  }
+  
+  .footer a {
+    color: #000000;
+    text-decoration: none;
+  }
+  
+  .footer a:hover {
+    text-decoration: underline;
+  }
+  
