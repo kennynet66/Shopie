@@ -11,7 +11,7 @@ import mssql from 'mssql';
 import { sqlConfig } from "../Config/sql.config";
 import { v4 } from "uuid";
 import { newProductSchema } from "../Validators/product.validator";
-import { Product } from "../interface/product.Interface";
+import { Product } from "../Interfaces/product.Interface";
 
 export const createProduct = (async (req: Request, res: Response) => {
     try {

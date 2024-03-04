@@ -3,7 +3,7 @@ import mssql from 'mssql';
 import { sqlConfig } from "../Config/sql.config";
 import { v4 } from "uuid";
 import { newCategorySchema } from "../Validators/category.validator";
-import { Category } from "../interface/category.Interface";
+import { Category } from "../Interfaces/category.Interface";
 
 export const createCategory = (async (req: Request, res: Response) => {
     try {
