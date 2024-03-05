@@ -16,6 +16,7 @@ export class NewProductComponent {
   createProductForm!: FormGroup;
   categoryarr: category[] = [];
   productsarr: product[] = [];
+  value:string ='Save'
 
   constructor(private fb:FormBuilder, private dataservice: DataService){
     this.createProductForm = this.fb.group({

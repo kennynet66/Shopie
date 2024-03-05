@@ -3,7 +3,7 @@
     <input type="search" name="search" id="search" placeholder="search for...">
   </div>
   <div class="content">
-    <div class="form" [formGroup]="createProductForm" ngSubmit="createProduct()">
+    <div class="form" [formGroup]="createProductForm" (ngSubmit)="createProduct(createProductForm.value)">
       <form>
         <h2>Add Product</h2>
         <div class="input-div">
@@ -38,7 +38,7 @@
           </select>
         </div>
         <div class="input-div">
-          <button type="submit" (click)="createProduct(createProductForm.value)" class="submit-btn">Save</button>
+          <button type="submit" class="submit-btn">{{value}}</button>
         </div>
       </form>
     </div>
@@ -59,8 +59,8 @@
             <!-- <button class="edit">Edit</button> -->
           </div>
           </div>
-          
-          
+
+
         </div>
       </div>
     </div>
