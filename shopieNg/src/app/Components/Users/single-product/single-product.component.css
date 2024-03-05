@@ -117,4 +117,44 @@
     }
 }
 
+
+.error-message {
+  color: #721c24;
+  background-color: #f8d7da;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #f5c6cb;
+  border-radius: 5px;
+}
+
+.success-message {
+  color: #155724;
+  background-color: #d4edda;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #c3e6cb;
+  border-radius: 5px;
+}
+
+.action-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.quantity-button {
+  font-size: 14px;  /* Adjust the font size as needed */
+  padding: 5px 10px;  /* Adjust the padding as needed */
+  margin: 0;
+  cursor: pointer;
+  background-color: #3498db;  /* Example background color */
+  color: #ffffff;  /* Example text color */
+  border: none;
+  border-radius: 4px;
+}
+
+.quantity {
+  font-size: 16px;  /* Adjust the font size as needed */
+  margin: 0 10px;   /* Adjust the margin as needed */
+}
+
   

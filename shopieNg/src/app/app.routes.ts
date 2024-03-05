@@ -9,21 +9,22 @@ import { AdminDashboardComponent } from './Components/Admin/admin-dashboard/admi
 import { ProductsComponent } from './Components/Admin/products/products.component';
 import { NewProductComponent } from './Components/Admin/new-product/new-product.component';
 import { CustomersComponent } from './Components/Admin/customers/customers.component';
+import { LandingComponent } from './Components/Users/landing/landing.component';
 
 export const routes: Routes = [
+    {path: '', component: LandingComponent},
     {path:'single-product/:id', component: SingleProductComponent},
     {path:'cart-modal', component: CartModalComponent},
-    {path:'**', component: NotfoundComponent},
     {path:'login', component: LoginComponent},
-  {path:'register', component: RegisterComponent},
-  {path: 'admin', component: AdminDashboardComponent, children: [
-    {path: 'products', component: ProductsComponent},
-    {path: 'new-product', component: NewProductComponent},
-    {path: 'customers', component: CustomersComponent},
-  ]} 
+    {path:'register', component: RegisterComponent},
+    {path: 'admin', component: AdminDashboardComponent, children: [
+      {path: 'products', component: ProductsComponent},
+      {path: 'new-product', component: NewProductComponent},
+      {path: 'customers', component: CustomersComponent},
+    ]},
+    {path:'**', component: NotfoundComponent},
 
 ];
-
 
 @NgModule({
     imports: [RouterModule.forRoot(routes)],

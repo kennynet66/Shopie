@@ -1,0 +1,5 @@
+CREATE OR ALTER PROCEDURE deleteCart(@id VARCHAR(255))
+AS
+BEGIN
+    DELETE FROM cart WHERE id = @id
+END

@@ -7,3 +7,4 @@ CREATE TABLE Users(
     isAdmin VARCHAR(255),
     isDeleted VARCHAR(255)
 )
+

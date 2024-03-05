@@ -21,6 +21,9 @@ export class SingleProductComponent {
 
   products: Product[]=[]
   product: Product | null = null
+  errorMessage: string | null = null;
+  successMessage: string | null = null;
+  quantity: number = 1;
 
   constructor(private api: ApiService, private router: Router,  private route: ActivatedRoute, private cartService: CartService,  private authService: AuthService){}
 
@@ -51,32 +54,57 @@ export class SingleProductComponent {
 
           this.fetchProducts(this.product.category);
         } else {
+          this.errorMessage = 'Failed to fetch product details. Please try again.';
           console.error('Product not found or an error occurred:', res);
         }
-      })
+      },
+      (error) => {
+        this.errorMessage = 'An error occurred while fetching product details. Please try again.';
+        console.error('Error fetching single product:', error);
+      }
+      )
   }
 
-fetchProducts(category: string) {
-  console.log('Fetching products by category:', category);
-  this.api.getByCategory(category).subscribe(
-    (res: Product[] | any) => {
-      console.log('Response:', res);
+  fetchProducts(category: string) {
+    console.log('Fetching products by category:', category);
+    this.api.getByCategory(category).subscribe(
+      (res: Product[] | any) => {
+        console.log('Response:', res);
 
-      if (Array.isArray(res)) {
-        this.products = res.slice(0, 6);
-        console.log('Similar Products:', this.products);
-      } else {
-        console.error('Unexpected response structure:', res);
+        if (Array.isArray(res)) {
+          this.products = res.slice(0, 6);
+          console.log('Similar Products:', this.products);
+        } else {
+          this.errorMessage = 'Unexpected response structure.';
+          console.error('Unexpected response structure:', res);
+        }
+      },
+      (error) => {
+        this.errorMessage = 'Error fetching similar products. Please try again.';
+        console.error('Error fetching products:', error);
       }
-    },
-    // (error) => {
-    //   console.error('Error fetching products:', error);
-    // }
   );
 }
 
 showSimilarProducts(categoryId: string) {
   this.fetchProducts(categoryId);
+}
+
+clearMessagesAfterTimeout(): void {
+  setTimeout(() => {
+    this.errorMessage = null;
+    this.successMessage = null;
+  }, 2000);
+}
+
+decrementQuantity() {
+  if (this.quantity > 1) {
+    this.quantity--;
+  }
+}
+
+incrementQuantity() {
+  this.quantity++;
 }
 
 addToCart(product: any) {
@@ -85,23 +113,24 @@ addToCart(product: any) {
       const productDetails = {
         userId: user.id,
         date: new Date().toISOString(),
-        products: [{ productId: product.id, quantity: 1 }]
+        products: [{ productId: product.id, productTitle: product.title, productImage: product.image, productPrice: product.price, quantity: this.quantity}]
       };
 
       this.api.addProductToCart(user.id, productDetails).subscribe(
         (response) => {
+          this.successMessage = 'Product added to cart successfully.';
           console.log('Product added to cart:', response);
-          // You may want to update the UI or perform additional actions here
           this.cartService.addToCart(product);
         },
         (error) => {
+          this.errorMessage = 'Failed to add product to cart. Please try again.';
           console.error('Error adding product to cart:', error);
-          // Handle the error as needed
         }
       );
     }
   );
 }
+
 
 navigateToSingleProduct(productId: string): void {
   console.log('Product ID:', productId);
@@ -115,11 +144,15 @@ navigateToSingleProduct(productId: string): void {
         console.log('Product Details:', this.product);
         this.router.navigate(['/single-product', productId]);
       } else {
+        this.errorMessage = 'Product not found or an error occurred.';
         console.error('Product not found or an error occurred:', res.error);
       }
+      this.clearMessagesAfterTimeout();
     },
     (error) => {
+      this.errorMessage = 'An error occurred while fetching single product. Please try again.';
       console.error('Error fetching single product:', error);
+      this.clearMessagesAfterTimeout();
     }
   ); 
 }

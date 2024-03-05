@@ -7,6 +7,7 @@ import categoryRoutes from './Routes/category.Routes';
 import userRouter from './Routes/user.router';
 import authRouter from './Routes/auth.router';
 import cors from 'cors';
+import cartRouter from './Routes/cart.router';
 
 const app = express();
 
@@ -15,18 +16,13 @@ dotenv.config();
 app.use(json());
 app.use(cors())
 
-// Import product routes
 app.use('/products', productRoutes);
-
-// Import category routes
 app.use('/categories', categoryRoutes);
-
-const PORT = process.env.PORT as string;
-
-
-
+app.use('/cart', cartRouter)
 app.use('/user', userRouter);
 app.use('/auth', authRouter)
+
+const PORT = process.env.PORT as string;
 
 app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
     res.status(500).json({

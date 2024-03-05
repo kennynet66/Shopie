@@ -15,15 +15,11 @@ export class NavbarComponent {
   constructor(private router: Router, private cartService: CartService) {} 
 
   navigateToHome(){
-    this.router.navigate([' ']);
+    this.router.navigate(['/']);
   }
 
-  // navigateToCart(){
-  //   this.router.navigate(['/cart-modal']);
-  // }
-
   openCart() {
-    this.cartService.openCart();
+    this.router.navigate(['/cart-modal']);
   }
   
 }

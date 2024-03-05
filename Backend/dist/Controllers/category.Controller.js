@@ -64,7 +64,7 @@ exports.getAllCategories = ((req, res) => __awaiter(void 0, void 0, void 0, func
     // if(categories.length >=1){
     res.status(200).json({
         success: "Found some categories",
-        categories: categories
+        categories
     });
     // } else {
     //     res.status(201).json({

@@ -49,8 +49,16 @@ export class ApiService {
 
   //cart services
 
-  getUserCart(id: string){
-    return this.http.get<{product:Product, error: string}>(`https://fakestoreapi.com/carts/user/${id}`,{
+  getUserCart(userId: string){
+    return this.http.get<{cart: any[], error: string}>(`http://localhost:3000/cart/${userId}`,{
+      headers: new HttpHeaders({
+        'Content-type': 'application/json'
+      })
+    })
+  }
+
+  getAllUsersCart(){
+    return this.http.get<{product:Product, error: string}>(`https://fakestoreapi.com/carts/`,{
       headers: new HttpHeaders({
         'Content-type': 'application/json'
       })
@@ -58,7 +66,7 @@ export class ApiService {
   }
 
   addProductToCart(userId: any, productDetails: any): Observable<{ product: Product, error: string }>{
-    return this.http.post<{product:Product, error: string}>('https://fakestoreapi.com/carts', productDetails, {
+    return this.http.post<{product:Product, error: string}>('http://localhost:3000/cart', productDetails, {
       headers: new HttpHeaders({
         'Content-type': 'application/json'
       })

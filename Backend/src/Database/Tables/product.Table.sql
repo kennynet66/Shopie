@@ -21,3 +21,5 @@
  )
 
 ALTER TABLE Products ADD productImage VARCHAR(255)
+
+-- SELECT * FROM Products
