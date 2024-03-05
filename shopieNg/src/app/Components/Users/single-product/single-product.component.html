@@ -1,6 +1,16 @@
 <app-navbar></app-navbar>
 
+<div *ngIf="errorMessage" class="error-message">
+  {{ errorMessage }}
+</div>
+
+<div *ngIf="successMessage" class="success-message">
+  {{ successMessage }}
+</div>
+
 <div class="product-view">
+  
+
     <div class="product-image">
       <img src="{{product?.image}}" alt="Product Image">
     </div>
@@ -14,11 +24,17 @@
       <p class="product-description"><b>Description:</b> {{product?.description}}</p>
       <p class="category"><b>Category:</b> {{product?.category}}</p>
       <p class="rating"><b>Rating:</b> {{product?.rating}}</p>
+
+      <div>
+        <button class="quantity-button" (click)="decrementQuantity()">-</button>
+        <span class="quantity">{{ quantity }}</span>
+        <button class="quantity-button" (click)="incrementQuantity()">+</button>
+      </div>
   
       <div class="action-buttons">
-        <!-- <button class="buy-now-button">Buy It Now</button> -->
         <button class="add-to-cart-button" (click)="addToCart(product)">Add to Cart</button>
       </div>
+      
     </div>
 </div>
 

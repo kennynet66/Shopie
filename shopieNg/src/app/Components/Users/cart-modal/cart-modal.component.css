@@ -3,7 +3,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 30vh; 
+    min-height: 30vh;
+    margin-top: 175px; 
   }
   
   .placeholder {
@@ -42,5 +43,30 @@
 
   .cart-container {
     transition: height 0.3s ease; 
+  }
+
+  .cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+  }
+  
+  .cart-table th, .cart-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .cart-table th {
+    background-color: #f2f2f2;
+  }
+  
+  .product-image {
+    max-width: 60px;
+    height: auto;
+  }
+  
+  .product-image-cell {
+    text-align: center;
   }
   

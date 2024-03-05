@@ -21,9 +21,9 @@ export class AuthService {
   }
 
   // Mock user data for demonstration purposes
-  currentUser: { id: number, username: string } = { id: 5, username: 'exampleUser' };
+  currentUser: { id: string, username: string } = { id: "5", username: 'exampleUser' };
 
-  getCurrentUser(): Observable<{ id: number, username: string }> {
+  getCurrentUser(): Observable<{ id: string, username: string }> {
     return of(this.currentUser);
   }
 

@@ -9,4 +9,3 @@
     categoryName VARCHAR(255)
  )
 
-DROP TABLE Categories

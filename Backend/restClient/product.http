@@ -3,13 +3,14 @@ POST http://localhost:3000/products/new-product
 Content-Type: application/json
 
 {
-    "productName": "Juice wrld t-shirt",
-    "descr": "This is a descr",
+    "productName": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+    "descr": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
     "productQuantity": 200,
-    "productImage": "https://i.ebayimg.com/images/g/GJcAAOSwMb9is9wL/s-l1200.webp",
-    "productCategory": "6dfe9ab8-30ed-4008-b904-43d534d2a4c9",
-    "productPrice": 600
+    "productImage": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+    "productCategory": "men's clothing",
+    "productPrice": 109.95
 }
+
 
 ### Get all products
 GET http://localhost:3000/products/all-products
