@@ -100,7 +100,9 @@ export const getOneProduct = (async (req: Request, res: Response)=>{
         if(pool.connected){
             // Get the product Id from the req params
             const productId = req.params.productId
+            
             const product = (await pool.request()
+            
             .input('productId', mssql.VarChar, productId)
             .execute('getOneProduct')
             ).recordset
@@ -122,9 +124,10 @@ export const getOneProduct = (async (req: Request, res: Response)=>{
             });
         }
     } catch (error) {
+        console.error("Error executing SQL query:", error);
         res.status(500).json({
-            error
-        })
+            error: "Internal Server Error"
+        });
     }
 })
 

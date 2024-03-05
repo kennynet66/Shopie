@@ -12,18 +12,18 @@
   
 
     <div class="product-image">
-      <img src="{{product?.image}}" alt="Product Image">
+      <img src="{{productArr[0]?.productImage}}" alt="Product Image">
     </div>
 
     <div class="product-details">
-      <h2 class="product-name"><b></b>{{product?.title}}</h2>
-      <p class="product-price"><b>$</b>{{product?.price}}</p>
+      <h2 class="product-name"><b></b>{{productArr[0]?.productName}}</h2>
+      <p class="product-price"><b>$</b>{{productArr[0]?.productPrice}}</p>
   
   
   
-      <p class="product-description"><b>Description:</b> {{product?.description}}</p>
-      <p class="category"><b>Category:</b> {{product?.category}}</p>
-      <p class="rating"><b>Rating:</b> {{product?.rating}}</p>
+      <p class="product-description"><b>Description:</b> {{productArr[0]?.descr}}</p>
+      <p class="category"><b>Category:</b> {{productArr[0]?.categoryName}}</p>
+      <!-- <p class="rating"><b>Rating:</b> {{product?.rating}}</p> -->
 
       <div>
         <button class="quantity-button" (click)="decrementQuantity()">-</button>
@@ -32,7 +32,7 @@
       </div>
   
       <div class="action-buttons">
-        <button class="add-to-cart-button" (click)="addToCart(product)">Add to Cart</button>
+        <button class="add-to-cart-button" (click)="addToCart(productArr[0])">Add to Cart</button>
       </div>
       
     </div>
@@ -43,13 +43,12 @@
   <div class="similar-products" *ngIf="products.length > 0">
     <div>Similar Products</div>
     <div class="product-grid" *ngFor="let product of products; let i = index">
-      <div class="product-card" (click)="navigateToSingleProduct(product.id.toString())">
-        <div><img src="{{product?.image}}" alt=""></div>
+      <div class="product-card" (click)="navigateToSingleProduct(product.productId.toString())">
+        <div><img src="{{product?.productImage}}" alt=""></div>
         <div>
-          <p><b>{{product?.title}}</b></p>
-          <p><b>$</b> {{product?.price}} </p>
-          <!-- <p>{{product?.description}}</p> -->
-          <p><b>Rating:</b> {{product.rating.rate}} </p>
+          <p><b>{{product?.productName}}</b></p>
+          <p><b>$</b> {{product?.productPrice}} </p>
+          <!-- <p><b>Rating:</b> {{product.rating.rate}} </p> -->
         </div>
       </div>
     </div>

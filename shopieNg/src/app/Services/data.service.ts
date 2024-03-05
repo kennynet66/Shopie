@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Products, deleteProductResponse, newProductResponse, product } from '../Interfaces/products.Interface';
+import { deleteProductResponse, newProductResponse, product, productsResponse } from '../Interfaces/products.Interface';
 import { Categories } from '../Interfaces/categories.Inteface';
 
 @Injectable({
@@ -11,7 +11,7 @@ export class DataService {
   constructor(private http: HttpClient) { }
 
   getAllProducts(){
-    return this.http.get<Products>('http://localhost:3000/products/all-products')
+    return this.http.get<productsResponse>('http://localhost:3000/products/all-products')
   }
   getAllCategories(){
     return this.http.get<Categories>('http://localhost:3000/categories/all-categories')

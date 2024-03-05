@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Product, Rating } from '../Interfaces/product.interface';
+import { Product } from '../Interfaces/product.interface';
 import { Observable } from 'rxjs';
+import { productsResponse } from '../Interfaces/products.Interface';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class ApiService {
 
   ///products api and category service
   getProducts(){
-    return this.http.get<{products:Product[], error: string}>('https://fakestoreapi.com/products',{
+    return this.http.get<{products:Product[], error: string}>('http://localhost:3000/products/all-products',{
       headers: new HttpHeaders({
         'Content-type': 'application/json'
       })
@@ -24,7 +25,7 @@ export class ApiService {
   }
 
   getSingleProduct(id:string){
-    return this.http.get <{id: string, title: string, price: number, description: string, category: string, image: string, rating: any }>(`https://fakestoreapi.com/products/${id}`,{
+    return this.http.get <productsResponse>(`https://fakestoreapi.com/products/${id}`,{
       headers: new HttpHeaders({
         'Content-type': 'application/json'
       })

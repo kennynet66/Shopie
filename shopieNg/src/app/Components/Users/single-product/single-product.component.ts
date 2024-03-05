@@ -8,6 +8,7 @@ import { ApiResponse } from '../../../Interfaces/apiResponse.interface';
 import { ActivatedRoute } from '@angular/router';
 import { CartService } from '../../../Services/cart.service';
 import { AuthService } from '../../../Services/auth.service';
+import { product } from '../../../Interfaces/products.Interface';
 
 @Component({
   selector: 'app-single-product',
@@ -20,7 +21,7 @@ import { AuthService } from '../../../Services/auth.service';
 export class SingleProductComponent {
 
   products: Product[]=[]
-  product: Product | null = null
+  productArr: Product[] = []
   errorMessage: string | null = null;
   successMessage: string | null = null;
   quantity: number = 1;
@@ -40,19 +41,24 @@ export class SingleProductComponent {
   fetchSingleProduct(id: string): void { 
     
     this.api.getSingleProduct(id).subscribe(res => {
-        
-        if (res !== undefined)  {
-          this.product = {
-            id: res.id,
-            title: res.title, 
-            price: res.price,
-            description: res.description,
-            category: res.category,
-            image: res.image,
-            rating: res.rating
+         
+      if (res !== undefined)  {
+           res.products.forEach((product:any) =>{
+            this.productArr.push(product)
+          })
+         /*  this.product = {
+            categoryId: res.products[0].categoryId,
+            productId: res.products[0].productId,
+            productName: res.products[0].productName, 
+            productPrice: res.products[0].productPrice, 
+            descr: res.products[0].descr, 
+            productQuantity: res.products[0].productQuantity,
+            categoryName: res.products[0].categoryName, 
+            productImage: res.products[0].productImage, 
+            // rating: res.rating
           };
-
-          this.fetchProducts(this.product.category);
+ */
+          this.fetchProducts(this.products[0].categoryId);
         } else {
           this.errorMessage = 'Failed to fetch product details. Please try again.';
           console.error('Product not found or an error occurred:', res);
@@ -140,8 +146,8 @@ navigateToSingleProduct(productId: string): void {
       console.log('Full API Response:', res);
   
       if (res) {
-        this.product = res;
-        console.log('Product Details:', this.product);
+        this.productArr = res;
+        console.log('Product Details:', this.productArr);
         this.router.navigate(['/single-product', productId]);
       } else {
         this.errorMessage = 'Product not found or an error occurred.';

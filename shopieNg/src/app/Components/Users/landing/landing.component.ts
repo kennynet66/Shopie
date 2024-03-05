@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
-import { CommonModule } from '@angular/common'
-import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router'
-import { Product, Rating } from '../../../Interfaces/product.interface'
-import { ApiService } from '../../../Services/api.service'
-import { ProductCategory} from '../../../Interfaces/productCategory.interface'
+import { CommonModule } from '@angular/common';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { Product } from '../../../Interfaces/product.interface';
+import { ApiService } from '../../../Services/api.service';
+import { ProductCategory} from '../../../Interfaces/productCategory.interface';
 import { ApiResponse } from '../../../Interfaces/apiResponse.interface';
 import { CartModalComponent } from '../cart-modal/cart-modal.component';
 
@@ -28,30 +28,25 @@ export class LandingComponent implements OnInit {
     this.fetchProducts();
   }
 
-
   fetchProducts() {
     this.api.getProducts().subscribe(
-      (res: Product[] | any) => {
-        // console.log('Response:', res);
-  
-        if (Array.isArray(res)) {
+      (res: { products: Product[] }) => {
+        if (res && Array.isArray(res.products)) {
           const productsByCategory: ProductCategory[] = [];
-  
-          res.forEach((product: Product) => {
+
+          res.products.forEach((product: Product) => {
             const categoryIndex = productsByCategory.findIndex(
-              (category) => category.products.length > 0 && category.products[0].category === product.category
+              (category) => category.products.length > 0 && category.products[0].productCategory === product.productCategory
             );
-  
+
             if (categoryIndex !== -1) {
               productsByCategory[categoryIndex].products.push(product);
             } else {
-              productsByCategory.push({ category: product.category, products: [product] });
+              productsByCategory.push({ category: product.productCategory, products: [product] });
             }
           });
-  
+
           this.products = productsByCategory;
-  
-          // console.log('Products by Category:', this.products);
         } else {
           console.error('Unexpected response structure:', res);
         }

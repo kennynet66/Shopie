@@ -3,10 +3,10 @@ POST http://localhost:3000/user
 Content-Type: application/json
 
 {
-  "firstName": "Kenedy",
-  "lastName": "Maina",
-  "email": "kennynet66@gmail.com",
-  "password": "test12"
+  "firstName": "kingangi",
+  "lastName": "kingangi",
+  "email": "kingangi@skiff.com",
+  "password": "kingangi"
 }
 
 ### Get Users
