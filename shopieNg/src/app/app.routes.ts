@@ -10,6 +10,7 @@ import { ProductsComponent } from './Components/admin/products/products.componen
 import { NewProductComponent } from './Components/admin/new-product/new-product.component';
 import { CustomersComponent } from './Components/admin/customers/customers.component';
 import { LandingComponent } from './Components/Users/landing/landing.component';
+import { UpdateComponent } from './Components/admin/update/update.component';
 
 export const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -22,6 +23,7 @@ export const routes: Routes = [
       { path: 'products', component: ProductsComponent },
       { path: 'new-product', component: NewProductComponent },
       { path: 'customers', component: CustomersComponent },
+      { path: 'update/:productId', component: UpdateComponent },
     ]
   },
   { path: '**', component: NotfoundComponent },

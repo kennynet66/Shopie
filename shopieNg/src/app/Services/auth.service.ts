@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { loginDetails, loginResponse } from '../Interfaces/login.interface';
 import { Observable, of } from 'rxjs';
+import { User, userResponse } from '../Interfaces/user.Interface';
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +30,8 @@ export class AuthService {
 
   loginUser(details:loginDetails){
     return this.http.post<loginResponse>('http://localhost:3000/auth/login', details)
+  }
+  registerUser(details:User){
+    return this.http.post<userResponse>('http://localhost:3000/user', details)
   }
 }
