@@ -19,7 +19,7 @@
             <option>women's clothing</option>
         </select>
     </div>
-<!-- 
+<!--
     <li routerLink="/register" *ngIf="!isLoggedIn" class="register">Register</li>
             <li routerLink="/login" *ngIf="!isLoggedIn" class="login" data-cy="login">Login</li> -->
 
@@ -29,5 +29,6 @@
         <img class="cart-icon" src="../../../../assets/cart-icon.png" alt="cart-icon" >
     </div>
 
-    <a href="#" class="login-link" routerLink="login">Login</a>
+    <a *ngIf="isLogged" class="login-link" (click)="logout()" style="cursor: pointer;">Logout</a>
+    <a *ngIf="!isLogged" class="login-link" routerLink="login" style="cursor: pointer;">Login</a>
 </nav>

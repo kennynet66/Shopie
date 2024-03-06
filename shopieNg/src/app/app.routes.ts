@@ -11,15 +11,18 @@ import { AdminDashboardComponent } from './Components/admin/admin-dashboard/admi
 import { ProductsComponent } from './Components/admin/products/products.component';
 import { NewProductComponent } from './Components/admin/new-product/new-product.component';
 import { CustomersComponent } from './Components/admin/customers/customers.component';
+import { AuthGuard } from './Guards/auth.guard';
 
 export const routes: Routes = [
   { path: '', component: LandingComponent },
-  { path: 'single-product/:id', component: SingleProductComponent},
+  { path: 'single-product/:id', component: SingleProductComponent },
   { path: 'cart-modal', component: CartModalComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   {
-    path: 'admin', component: AdminDashboardComponent, children: [
+    path: 'admin', component: AdminDashboardComponent,
+    canActivate: [AuthGuard],
+    children: [
       { path: 'products', component: ProductsComponent },
       { path: 'new-product', component: NewProductComponent },
       { path: 'customers', component: CustomersComponent },

@@ -19,9 +19,14 @@ export class LoginComponent {
   errorDiv = false
   successDiv = false
 
-  displaySuccess(msg:string, route:string){
+  storeToken(token: string){
+    localStorage.setItem('token', token)
+  }
+
+  displaySuccess(msg:string, route:string, token: string){
     this.successMsg = msg;
-    this.successDiv = true
+          this.storeToken(token)
+          this.successDiv = true
     setTimeout(() => {
       this.successDiv = false
       this.router.navigate([`${route}`])
@@ -50,9 +55,9 @@ export class LoginComponent {
       this.authservice.loginUser(details).subscribe(res =>{
         console.log("called");
         if(res.message && res.isAdmin){
-          this.displaySuccess(res.message, 'admin/products')
+          this.displaySuccess(res.message, 'admin/products', res.token);
         } else if(res.message && !res.isAdmin){
-          this.displaySuccess(res.message, '')
+          this.displaySuccess(res.message, '', res.token)
         } else if(res.error){
           this.displayErrors(res.error)
         }
