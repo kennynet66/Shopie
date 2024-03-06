@@ -4,12 +4,12 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { DataService } from '../../../Services/data.service';
 import { category } from '../../../Interfaces/categories.Inteface';
 import { product } from '../../../Interfaces/products.Interface';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-new-product',
   standalone: true,
-  imports: [ ReactiveFormsModule, CommonModule ],
+  imports: [ ReactiveFormsModule, CommonModule, RouterLink ],
   templateUrl: './new-product.component.html',
   styleUrl: './new-product.component.css'
 })

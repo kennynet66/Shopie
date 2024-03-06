@@ -62,7 +62,8 @@
           </div>
           <div class="product-actions">
             <i class="fa-solid fa-trash" style="color: red;" (click)="confirmDelete(products.productName, products.productId)"></i>
-            <i class="fa-solid fa-pen-to-square" (click)="navigateToUpdate(products.productId)" style="color: #1e90ff;"></i>
+            <!-- <i class="fa-solid fa-pen-to-square" (click)="navigateToUpdate(products.productId)" style="color: #1e90ff;"></i> -->
+            <i class="fa-solid fa-pen-to-square" routerLink="/admin/update/{{products.productId}}" style="color: #1e90ff;"></i>
           </div>
           </div>
 

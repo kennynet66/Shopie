@@ -1,1 +1,67 @@
-<p>update works!</p>
+<section class="new-product">
+  <div *ngIf="errorDiv" class="error-message">{{errorMsg}}</div>
+  <div  *ngIf="successDiv"  class="success-message">{{successMsg}}</div>
+  <div class="content">
+    <div class="form">
+      <form [formGroup]="updateProductForm" (ngSubmit)="updateProduct()">
+        <h2>Update Product</h2>
+        <div class="input-div">
+          <label for="product-name">Product Name:</label>
+          <input type="text" name="product-name" formControlName="productName" id="product-name">
+        </div>
+        <div class="input-div">
+          <label for="product-desc">Product description:</label>
+          <input type="text" name="product-desc" formControlName="descr" id="product-desc">
+        </div>
+        <div class="input-div">
+          <label for="product-qty">Product quantity:</label>
+          <input type="number" name="" id="" formControlName="productQuantity">
+        </div>
+
+        <div class="input-div">
+          <label for="product-price">Product price</label>
+          <input type="number" name="" formControlName="productPrice" id="">
+        </div>
+
+        <div class="input-div">
+          <label for="product-img">Product image:</label>
+          <input type="text" formControlName="productImage">
+        </div>
+
+        <div class="input-div">
+          <label for="product-category">Select category: </label>
+          <select name="select" id="" formControlName="productCategory">
+            <option value="">--Select category--</option>
+            <option *ngFor="let category of categoryarr; let i = index" value="{{category.categoryId}}">
+              {{category.categoryName}}</option>
+          </select>
+        </div>
+        <div class="input-div">
+          <button type="submit" class="submit-btn">Update</button>
+        </div>
+      </form>
+    </div>
+    <!-- <div class="products">
+      <div class="cards">
+        <div class="card" *ngFor="let products of productsarr; let i = index">
+            <img class="product-img" src="{{products.productImage}}" alt="product Image">
+          <div class="separator">
+            <div class="product">
+            <h1 class="product-title">{{products.productName}}</h1>
+            <p class="product-desc">Price: {{products.productPrice}}</p>
+            <p class="product-desc"><i>Category: {{products.categoryName}}</i></p>
+          </div>
+          <div class="product-actions">
+            <i class="fa-solid fa-trash" style="color: red;" (click)="confirmDelete(products.productName, products.productId)"></i>
+            <i class="fa-solid fa-pen-to-square" (click)="navigateToUpdate(products.productId)" style="color: #1e90ff;"></i>
+            <i class="fa-solid fa-pen-to-square" routerLink="/admin/update/{{products.productId}}" style="color: #1e90ff;"></i>
+          </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div> -->
+  </div>
+
+</section>

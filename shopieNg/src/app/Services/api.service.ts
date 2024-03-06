@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Product } from '../Interfaces/product.interface';
 import { Observable } from 'rxjs';
-import { productsResponse } from '../Interfaces/products.Interface';
+import { product, productsResponse, updateProductInterface } from '../Interfaces/products.Interface';
 import { userInfoResponse } from '../Interfaces/user.Interface';
 
 @Injectable({
@@ -88,5 +88,9 @@ export class ApiService {
         token
       }
     })
+  }
+
+  updateProduct(details:product, productId: string){
+    return this.http.put<updateProductInterface>(`http://localhost:3000/products/update/${productId}`, details)
   }
 }
