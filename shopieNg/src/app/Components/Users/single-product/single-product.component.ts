@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../navbar/navbar.component';
-import { Product, Rating } from '../../../Interfaces/product.interface';
+// import { Product} from '../../../Interfaces/product.interface';
 import { ApiService } from '../../../Services/api.service'
 import { Router, RouterLink } from '@angular/router';
 import { ApiResponse } from '../../../Interfaces/apiResponse.interface';
@@ -9,6 +9,8 @@ import { ActivatedRoute } from '@angular/router';
 import { CartService } from '../../../Services/cart.service';
 import { AuthService } from '../../../Services/auth.service';
 import { product } from '../../../Interfaces/products.Interface';
+import { ProductCategory} from '../../../Interfaces/productCategory.interface';
+import { Product } from '../../../Interfaces/product.interface';
 
 @Component({
   selector: 'app-single-product',
@@ -20,16 +22,22 @@ import { product } from '../../../Interfaces/products.Interface';
 
 export class SingleProductComponent {
 
-  products: Product[]=[]
-  productArr: Product[] = []
+  
+  productArr: any = []
   errorMessage: string | null = null;
   successMessage: string | null = null;
   quantity: number = 1;
+
+  products: any = []; 
+  product: Product | undefined; 
+  
 
   constructor(private api: ApiService, private router: Router,  private route: ActivatedRoute, private cartService: CartService,  private authService: AuthService){}
 
   ngOnInit(){      
     const productId = this.route.snapshot.paramMap.get('id');
+    // console.log(productId);
+    
 
   if (productId) {
     this.fetchSingleProduct(productId);
@@ -38,27 +46,16 @@ export class SingleProductComponent {
   }
   }
 
-  fetchSingleProduct(id: string): void { 
-    
-    this.api.getSingleProduct(id).subscribe(res => {
-         
-      if (res !== undefined)  {
-           res.products.forEach((product:any) =>{
-            this.productArr.push(product)
-          })
-         /*  this.product = {
-            categoryId: res.products[0].categoryId,
-            productId: res.products[0].productId,
-            productName: res.products[0].productName, 
-            productPrice: res.products[0].productPrice, 
-            descr: res.products[0].descr, 
-            productQuantity: res.products[0].productQuantity,
-            categoryName: res.products[0].categoryName, 
-            productImage: res.products[0].productImage, 
-            // rating: res.rating
-          };
- */
-          this.fetchProducts(this.products[0].categoryId);
+  fetchSingleProduct(id: string): void {
+    this.api.getSingleProduct(id).subscribe(
+      (res) => {
+        console.log(res);
+        
+        if (res.products) {
+          this.productArr.push(res.products[0]);
+          this.fetchProducts(res.products[0].categoryId);
+          console.log(res.products[0].categoryId);
+          
         } else {
           this.errorMessage = 'Failed to fetch product details. Please try again.';
           console.error('Product not found or an error occurred:', res);
@@ -68,17 +65,18 @@ export class SingleProductComponent {
         this.errorMessage = 'An error occurred while fetching product details. Please try again.';
         console.error('Error fetching single product:', error);
       }
-      )
+    );
   }
+
 
   fetchProducts(category: string) {
     console.log('Fetching products by category:', category);
     this.api.getByCategory(category).subscribe(
-      (res: Product[] | any) => {
+      (res) => {
         console.log('Response:', res);
 
-        if (Array.isArray(res)) {
-          this.products = res.slice(0, 6);
+        if (res.products) {
+          this.products = res.products.slice(0, 6);
           console.log('Similar Products:', this.products);
         } else {
           this.errorMessage = 'Unexpected response structure.';
@@ -119,7 +117,7 @@ addToCart(product: any) {
       const productDetails = {
         userId: user.id,
         date: new Date().toISOString(),
-        products: [{ productId: product.id, productTitle: product.title, productImage: product.image, productPrice: product.price, quantity: this.quantity}]
+        products: [{ productId: product.productId, productName: product.productName, productImage: product.productImage, productPrice: product.productPrice, quantity: this.quantity}]
       };
 
       this.api.addProductToCart(user.id, productDetails).subscribe(
@@ -129,8 +127,16 @@ addToCart(product: any) {
           this.cartService.addToCart(product);
         },
         (error) => {
-          this.errorMessage = 'Failed to add product to cart. Please try again.';
-          console.error('Error adding product to cart:', error);
+          if (error.status === 400 && error.error.error === 'Product already exists in the cart.') {
+            this.errorMessage = 'Product already exists in the cart.';
+          } else {
+            this.errorMessage = 'Failed to add product to cart. Please try again.';
+            console.error('Error adding product to cart:', error);
+          }
+          setTimeout(() => {
+            this.errorMessage = null;
+            this.successMessage= null;
+          }, 2000);
         }
       );
     }
@@ -146,19 +152,15 @@ navigateToSingleProduct(productId: string): void {
       console.log('Full API Response:', res);
   
       if (res) {
-        this.productArr = res;
-        console.log('Product Details:', this.productArr);
+        this.product = res;
+        console.log('Product Details:', this.product);
         this.router.navigate(['/single-product', productId]);
       } else {
-        this.errorMessage = 'Product not found or an error occurred.';
         console.error('Product not found or an error occurred:', res.error);
       }
-      this.clearMessagesAfterTimeout();
     },
     (error) => {
-      this.errorMessage = 'An error occurred while fetching single product. Please try again.';
       console.error('Error fetching single product:', error);
-      this.clearMessagesAfterTimeout();
     }
   ); 
 }

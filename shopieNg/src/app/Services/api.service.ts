@@ -26,7 +26,7 @@ export class ApiService {
   }
 
   getSingleProduct(id:string){
-    return this.http.get <productsResponse>(`https://fakestoreapi.com/products/${id}`,{
+    return this.http.get <productsResponse>(`http://localhost:3000/products/${id}`,{
       headers: new HttpHeaders({
         'Content-type': 'application/json'
       })
@@ -34,7 +34,7 @@ export class ApiService {
   }
 
   getAllCategories(){
-    return this.http.get<{product:Product, error: string}>(`https://fakestoreapi.com/products/categories`,{
+    return this.http.get<{product:Product, error: string}>(`http://localhost:3000/categories/all-categories`,{
       headers: new HttpHeaders({
         'Content-type': 'application/json'
       })
@@ -42,7 +42,7 @@ export class ApiService {
   }
 
   getByCategory(category :string){
-    return this.http.get<Product[]>(`https://fakestoreapi.com/products/category/${category}`,{
+    return this.http.get<productsResponse>(`http://localhost:3000/products/category-products/${category}`,{
       headers: new HttpHeaders({
         'Content-type': 'application/json'
       })

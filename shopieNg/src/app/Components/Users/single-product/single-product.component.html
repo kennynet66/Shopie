@@ -1,4 +1,4 @@
-<app-navbar></app-navbar>
+ <app-navbar></app-navbar>
 
 <div *ngIf="errorMessage" class="error-message">
   {{ errorMessage }}
@@ -8,51 +8,83 @@
   {{ successMessage }}
 </div>
 
-<div class="product-view">
-  
+<div class="product-view" *ngIf="productArr.length > 0">
 
-    <div class="product-image">
-      <img src="{{productArr[0]?.productImage}}" alt="Product Image">
+  <div class="product-image">
+    <img src="{{ productArr[0].productImage }}" alt="Product Image">
+  </div>
+
+  <div class="product-details">
+    <h2 class="product-name"><b></b>{{ productArr[0]?.productName }}</h2>
+    <p class="product-price"><b>$</b>{{ productArr[0]?.productPrice }}</p>
+
+    <p class="product-description"><b>Description:</b> {{ productArr[0]?.descr }}</p>
+    <p class="category"><b>Category:</b> {{ productArr[0]?.categoryName }}</p>
+
+    <div>
+      <button class="quantity-button" (click)="decrementQuantity()">-</button>
+      <span class="quantity">{{ quantity }}</span>
+      <button class="quantity-button" (click)="incrementQuantity()">+</button>
     </div>
 
-    <div class="product-details">
-      <h2 class="product-name"><b></b>{{productArr[0]?.productName}}</h2>
-      <p class="product-price"><b>$</b>{{productArr[0]?.productPrice}}</p>
-  
-  
-  
-      <p class="product-description"><b>Description:</b> {{productArr[0]?.descr}}</p>
-      <p class="category"><b>Category:</b> {{productArr[0]?.categoryName}}</p>
-      <!-- <p class="rating"><b>Rating:</b> {{product?.rating}}</p> -->
-
-      <div>
-        <button class="quantity-button" (click)="decrementQuantity()">-</button>
-        <span class="quantity">{{ quantity }}</span>
-        <button class="quantity-button" (click)="incrementQuantity()">+</button>
-      </div>
-  
-      <div class="action-buttons">
-        <button class="add-to-cart-button" (click)="addToCart(productArr[0])">Add to Cart</button>
-      </div>
-      
+    <div class="action-buttons">
+      <button class="add-to-cart-button" (click)="addToCart(productArr[0])">Add to Cart</button>
     </div>
+
+  </div>
 </div>
 
-  <hr>
+<hr>
 
-  <div class="similar-products" *ngIf="products.length > 0">
-    <div>Similar Products</div>
-    <div class="product-grid" *ngFor="let product of products; let i = index">
-      <div class="product-card" (click)="navigateToSingleProduct(product.productId.toString())">
-        <div><img src="{{product?.productImage}}" alt=""></div>
-        <div>
-          <p><b>{{product?.productName}}</b></p>
-          <p><b>$</b> {{product?.productPrice}} </p>
-          <!-- <p><b>Rating:</b> {{product.rating.rate}} </p> -->
-        </div>
+<div class="similar-products" *ngIf="products.length > 0">
+  <div>Similar Products</div>
+  <div class="product-grid" *ngFor="let product of products; let i = index">
+    <div class="product-card" (click)="navigateToSingleProduct(product.productId)">
+      <div><img src="{{ product?.productImage }}" alt=""></div>
+      <div>
+        <p><b>{{ product?.productName }}</b></p>
+        <p><b>$</b> {{ product?.productPrice }} </p>
       </div>
     </div>
   </div>
-  
-  
-  
+</div>
+
+<hr>
+
+<div>
+  <footer class="footer">
+      <div class="footer-column">
+        <ul>
+          <li><a href="#">Buy</a></li>
+          <li><a href="#">Registration</a></li>
+          <li><a href="#">Stores</a></li>
+        </ul>
+      </div>
+    
+      <div class="footer-column">
+        <ul>
+          <li><a href="#">Tools</a></li>
+          <li><a href="#">Developers</a></li>
+          <li><a href="#">Security</a></li>
+        </ul>
+      </div>
+    
+      <div class="footer-column">
+        <ul>
+          <li><a href="#">Stay Connected</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Twitter</a></li>
+          <li><a href="#">Discord</a></li>
+        </ul>
+      </div>
+    
+      <div class="footer-column">
+        <ul>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Community</a></li>
+        </ul>
+      </div>
+    </footer>
+    
+  </div>

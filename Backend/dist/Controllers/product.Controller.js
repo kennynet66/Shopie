@@ -109,13 +109,13 @@ exports.getOneProduct = ((req, res) => __awaiter(void 0, void 0, void 0, functio
         if (pool.connected) {
             // Get the product Id from the req params
             const productId = req.params.productId;
-            const product = (yield pool.request()
+            const products = (yield pool.request()
                 .input('productId', mssql_1.default.VarChar, productId)
                 .execute('getOneProduct')).recordset;
             // Verify if it found the product with the provided id
-            if (product.length >= 1) {
+            if (products.length >= 1) {
                 res.status(200).json({
-                    product
+                    products
                 });
             }
             else {

@@ -23,7 +23,7 @@ DELETE http://localhost:3000/products/delete/0200a1e0-08ad-40e7-bfa8-61a958299bf
 GET http://localhost:3000/products/246c97e3-2585-4840-b31e-3bb6ae99934f
 
 ### Get category products
-GET http://localhost:3000/products/category-products/aed2ae09-81b2-4532-ba16-421d498af6b3
+GET http://localhost:3000/products/category-products/0200a1e0-08ad-40e7-bfa8-61a958299bf9
 
 ### Update a product
 PUT http://localhost:3000/products/update/8db63923-d689-4231-94c7-6512abfb9b48

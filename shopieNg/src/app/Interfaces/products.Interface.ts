@@ -9,13 +9,13 @@ export interface productsResponse {
       productQuantity: number,
       productPrice: number,
       productImage: string,
-      // productCategory: string
     }
   ]
   error: string
 }
 
 export interface product {
+  categoryId : string,
   productId: string,
   productName: string,
   categoryName: string,

@@ -33,10 +33,8 @@ export class CartModalComponent  implements OnInit {
     });
 
     this.authService.getCurrentUser().subscribe(user => {
-      // Assuming user object has 'id' property
       const userId = user.id;
       
-      // Call fetchSingleCart with the userId
       this.fetchSingleCart(userId);
     });
   }
@@ -77,6 +75,8 @@ export class CartModalComponent  implements OnInit {
   closeCart() {
     console.log('Closing cart...');
   }
+
+  removeFromCart(){}
 
   
 }

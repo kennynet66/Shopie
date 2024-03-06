@@ -5,8 +5,8 @@ export const createCartSchema = joi.object({
     date: joi.date().required(),
     products: joi.array().items(
         joi.object({
-          productId: joi.number().required(),
-          productTitle: joi.string().required(),
+          productId: joi.string().required(),
+          productName: joi.string().required(),
           productImage: joi.string().required(),
           productPrice: joi.number().required(),
           quantity: joi.number().required(),

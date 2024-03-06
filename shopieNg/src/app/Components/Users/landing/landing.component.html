@@ -1,14 +1,23 @@
 <app-navbar></app-navbar>
 
 <div class="carousel">
-    <img src="../../../../assets/adidas_Gazelle_(evergreen_assets)SecondaryA.webp" alt="advert" class="advert">
+    <img src="../../../../assets/online-advertising-ecommerce.jpeg" alt="advert" class="advert">
 </div>
+
+<!-- <div class="carousel">
+  <div class="image-container">
+      <img src="../../../../assets/online-advertising-ecommerce.jpeg" alt="advert" class="advert">
+      <img src="path/to/second/image.jpg" alt="advert" class="advert">
+      <img src="path/to/third/image.jpg" alt="advert" class="advert">
+  </div>
+</div> -->
 
  <hr>
 
- <div class="category-container">
+<div class="category-container">
+  <!-- <h2>{{ category.category }}</h2> -->
   <div class="product-grid" *ngFor="let category of products; let i = index">
-    <h2>{{ category.category }}</h2>
+    <!-- <h2>{{ category.category }}</h2> -->
     <div *ngFor="let product of category.products; let j = index" class="product-card" (click)="navigateToSingleProduct(product.productId)">
       <div><img src="{{product.productImage}}" alt=""></div>
       <div>
@@ -26,7 +35,7 @@
  <hr>
 
  <div class="carousel">
-    <img src="../../../../assets/adidas_Gazelle_(evergreen_assets)SecondaryA.webp" alt="advert" class="advert">
+    <img src="../../../../assets/online-advertising-ecommerce.jpeg" alt="advert" class="advert">
 </div>
 
 <hr>
