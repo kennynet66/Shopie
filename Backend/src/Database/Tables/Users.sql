@@ -4,9 +4,11 @@ CREATE TABLE Users(
     lastName VARCHAR(255),
     email VARCHAR(255),
     password VARCHAR(255), 
-    isAdmin VARCHAR(255),
+    isAdmin BIT DEFAULT 0,
     isDeleted VARCHAR(255)
 )
+
+DROP TABLE Users
 
 -- SELECT * FROM Users
 

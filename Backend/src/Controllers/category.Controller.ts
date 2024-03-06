@@ -24,6 +24,7 @@ export const createCategory = (async (req: Request, res: Response) => {
             const result = (await pool.request()
                 .input('categoryId', mssql.VarChar, categoryId)
                 .input('categoryName', mssql.VarChar, categoryDetails.categoryName)
+                .input('categoryImage', mssql.VarChar(), categoryDetails.categoryImage)
                 .execute('createCategory')
             ).rowsAffected
 

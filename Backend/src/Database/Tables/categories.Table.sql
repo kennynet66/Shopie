@@ -9,3 +9,5 @@
     categoryName VARCHAR(255)
  )
 
+ALTER TABLE Categories
+ADD categoryImage VARCHAR(255)

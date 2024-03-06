@@ -1,4 +1,12 @@
 <section class="new-product">
+  <div *ngIf="confirmAction" class="confirm-div">
+    <img src="../../../../assets/warning.png" class="warning-img" alt="">
+    <h4>Are you sure you want to delete the item {{tempName}}?</h4>
+    <div class="confirm-btns">
+      <button class="confirm-cancel" (click)="cancelDelete()">Cancel</button>
+      <button class="confirm-delete" (click)="deleteProduct(tempId)">Delete</button>
+    </div>
+  </div>
   <div class="search-bar">
     <input type="search" name="search" id="search" placeholder="search for...">
   </div>
@@ -53,7 +61,7 @@
             <p class="product-desc"><i>Category: {{products.categoryName}}</i></p>
           </div>
           <div class="product-actions">
-            <i class="fa-solid fa-trash" style="color: red;" (click)="deleteProduct(products.productId)"></i>
+            <i class="fa-solid fa-trash" style="color: red;" (click)="confirmDelete(products.productName, products.productId)"></i>
             <i class="fa-solid fa-pen-to-square" (click)="navigateToUpdate(products.productId)" style="color: #1e90ff;"></i>
           </div>
           </div>

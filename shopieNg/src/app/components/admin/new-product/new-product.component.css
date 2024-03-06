@@ -29,6 +29,7 @@ input[type='search']{
   border-radius: 5px;
   width: 50%;
   margin: 2%;
+  height: max-content;
 }
 
 .input-div{
@@ -59,6 +60,7 @@ label{
   font-weight: bold;
 }
 
+
 .cards {
   display: flex;
   flex-wrap: wrap;
@@ -66,25 +68,32 @@ label{
 }
 
 .card {
-  background-color: #ffffff;
+  background-color: #f2f2f2;
   cursor: pointer;
-  width: 400px;
+  max-width: 400px;
+  min-width: 300px;
   padding: 10px;
   border-radius: 5px;
   box-shadow: 5px 0 3px  #dbdbdd;
   display: flex;
   gap: 20px;
-  /* justify-content: space-between; */
 }
 
 .card:hover {
   background-color: #dbdbdd;
 }
 
+.product-img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
 .separator{
   width: 90%;
   justify-content: space-between;
   display: flex;
+  gap: 10px;
 }
 
 .product-img {
@@ -113,4 +122,51 @@ label{
 .edit {
   background-color: forestgreen
 
+}
+
+.confirm-div{
+  background-color: #ffffff;
+  backdrop-filter: blur(10px);
+  position: fixed;
+  z-index: 3;
+  top: 40%;
+  padding: 10px;
+  align-self: center;
+  text-align: center;
+  box-shadow: 0 0 5px #000;
+  border-radius: 5px;
+}
+
+.warning-img {
+  width: 90px;
+}
+
+.confirm-delete, .confirm-cancel {
+  color: #ffffff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.confirm-btns{
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 2%;
+}
+
+.confirm-cancel{
+  background-color: #F4C430;
+  color: #ffffff;
+}
+
+.confirm-cancel:hover {
+  background-color: #E4D00A;
+}
+.confirm-delete{
+  background-color: #ED2939;
+}
+.confirm-delete:hover{
+  background-color: #FF2400;
 }

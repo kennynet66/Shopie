@@ -16,8 +16,11 @@ import { Router } from '@angular/router';
 export class NewProductComponent {
   createProductForm!: FormGroup;
   categoryarr: category[] = [];
-  productsarr: product[] = [];
-  value:string ='Save'
+  productsarr: any = [];
+  value:string ='Save';
+  tempId!:string
+  tempName!: string
+  confirmAction = false
 
   constructor(private fb:FormBuilder, private dataservice: DataService, private router: Router){
     this.createProductForm = this.fb.group({
@@ -54,18 +57,21 @@ export class NewProductComponent {
     })
   }
   displayProducts(){
-    // this.dataservice.getAllProducts().subscribe(res =>{
-    //   if(res.products){
-    //     res.products.forEach(product =>{ this.productsarr.push(product)})
-    //   }
+    this.dataservice.getAllProducts().subscribe(res =>{
+      if(res.products){
+        res.products.forEach(product =>{ this.productsarr.push(product)})
+      }
 
-    // })
+    })
   }
 
   deleteProduct(productId:string){
     this.dataservice.deleteProduct(productId).subscribe(res =>{
       if(res.success){
         this.productsarr = [];
+        this.tempId='';
+        this.tempName = ''
+        this.confirmAction = false;
         this.displayProducts()
       }
     })
@@ -73,4 +79,18 @@ export class NewProductComponent {
   navigateToUpdate(productId:string){
    this.router.navigate([`update/${productId}` ])
   }
+
+  confirmDelete(productName: string, productId:string){
+    this.tempId = productId
+    this.tempName = productName
+    this.confirmAction = true
+  }
+
+  cancelDelete(){
+    this.tempId='';
+    this.tempName = ''
+    this.confirmAction = false;
+  }
+
+
 }

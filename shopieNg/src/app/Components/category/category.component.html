@@ -1,0 +1,20 @@
+<section class="category">
+  <div *ngIf="errorDiv" class="error-message">{{errorMsg}}</div>
+  <div *ngIf="successDiv" class="success-message">{{successMsg}}</div>
+  <form class="category-form" [formGroup]="createCategoryForm" (ngSubmit)="createCategory(createCategoryForm.value)">
+    <h1>Create new category</h1>
+    <div class="input-div">
+      <label for="category-name">Category Name:</label>
+      <input type="text" name="category-name" formControlName="categoryName" id="category-name">
+      <div *ngIf="createCategoryForm.get('categoryName')?.invalid && createCategoryForm.get('categoryName')?.touched" id="error">Category name is required</div>
+    </div>
+    <div class="input-div">
+      <label for="category-name">Category Image:</label>
+      <input type="text" name="category-name" formControlName="categoryImage" id="category-name">
+      <div id="error" *ngIf="createCategoryForm.get('categoryImage')?.invalid && createCategoryForm.get('categoryImage')?.touched">Category image is required</div>
+    </div>
+    <div class="input-div">
+      <input type="submit" class="submit-btn" value="Create category">
+    </div>
+  </form>
+</section>
