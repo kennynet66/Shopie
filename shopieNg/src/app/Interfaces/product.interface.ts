@@ -4,14 +4,16 @@ interface Rating {
     count: number;
   }
   
-  interface Product {
-    id: string;
-    title: string;
-    price: number;
-    description: string;
-    category: string;
-    image: string;
-    rating: Rating;
+interface Product {
+    categoryId: string;
+    categoryName: string;
+    productId: string;
+    productName: string;
+    descr: string;
+    productQuantity: number;
+    productPrice: number;
+    productImage: string;
+    productCategory: string;
   }
   
   export { Product, Rating };

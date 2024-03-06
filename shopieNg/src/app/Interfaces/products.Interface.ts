@@ -1,6 +1,7 @@
-export interface Products {
+export interface productsResponse {
   products: [
     {
+      categoryId : string, 
       productId: string,
       productName: string,
       categoryName: string,
@@ -8,7 +9,7 @@ export interface Products {
       productQuantity: number,
       productPrice: number,
       productImage: string,
-      productCategory: string
+      // productCategory: string
     }
   ]
   error: string

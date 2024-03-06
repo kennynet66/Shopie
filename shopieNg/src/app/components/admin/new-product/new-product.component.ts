@@ -53,12 +53,12 @@ export class NewProductComponent {
     })
   }
   displayProducts(){
-    this.dataservice.getAllProducts().subscribe(res =>{
-      if(res.products){
-        res.products.forEach(product =>{ this.productsarr.push(product)})
-      }
+    // this.dataservice.getAllProducts().subscribe(res =>{
+    //   if(res.products){
+    //     res.products.forEach(product =>{ this.productsarr.push(product)})
+    //   }
 
-    })
+    // })
   }
 
   deleteProduct(productId:string){

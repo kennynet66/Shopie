@@ -1,7 +1,7 @@
 import { Product } from "./product.interface";
 
 interface ApiResponse {
-    product: Product;
+    products: Product[];
     error: string;
   }
 

@@ -8,3 +8,13 @@ CREATE TABLE Users(
     isDeleted VARCHAR(255)
 )
 
+-- SELECT * FROM Users
+
+-- ALTER TABLE Users SET isAdmin = 1 WHERE firstName = "duncan"
+
+
+
+-- ALTER TABLE Users
+-- ALTER COLUMN isDeleted BIT
+-- ALTER COLUMN isDeleted BIT DEFAULT 0;
+

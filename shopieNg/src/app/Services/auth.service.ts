@@ -10,6 +10,9 @@ export class AuthService {
 
   constructor(private http:HttpClient) { }
 
+  loginUser(details:loginDetails){
+    return this.http.post<loginResponse>('http://localhost:3000/auth/login', details)
+  }
 
   readToken(token:string){
     return this.http.get<{info:{userId:string, firstName:string, lastName:string, email: string}}>('http://localhost:4100/auth/checkdetails', {
@@ -25,9 +28,5 @@ export class AuthService {
 
   getCurrentUser(): Observable<{ id: string, username: string }> {
     return of(this.currentUser);
-  }
-
-  loginUser(details:loginDetails){
-    return this.http.post<loginResponse>('http://localhost:3000/auth/login', details)
   }
 }

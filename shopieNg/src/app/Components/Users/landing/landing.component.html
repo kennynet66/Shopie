@@ -8,19 +8,20 @@
 
  <div class="category-container">
   <div class="product-grid" *ngFor="let category of products; let i = index">
-    <!-- <h2>{{ category.category }}</h2> -->
-    <div *ngFor="let product of category.products; let j = index" class="product-card" (click)="navigateToSingleProduct(product.id.toString())">
-      <div><img src="{{product.image}}" alt=""></div>
+    <h2>{{ category.category }}</h2>
+    <div *ngFor="let product of category.products; let j = index" class="product-card" (click)="navigateToSingleProduct(product.productId)">
+      <div><img src="{{product.productImage}}" alt=""></div>
       <div>
-        <p><b>{{product.title}}</b></p>
-        <p><b>$</b> {{product.price}}</p>
-        <!-- <p>{{product.description}}</p> -->
-        <p><b>Category</b> {{product.category}}</p>
-        <p><b>Rating</b> {{product.rating.rate}}</p>
+        <p><b>{{product.productName}}</b></p>
+        <p><b>$</b> {{product.productPrice}}</p>
+        <p><b>Category</b> {{product.categoryName}}</p>
+        <p><b>Description</b> {{product.descr}}</p>
+        <p><b>Quantity</b> {{product.productQuantity}}</p>
       </div>
     </div>
   </div>
 </div>
+
 
  <hr>
 

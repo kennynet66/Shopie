@@ -3,7 +3,7 @@ POST http://localhost:3000/categories/new-category
 Content-Type: application/json
 
 {
-    "categoryName": ""
+    "categoryName": "Music"
 }
 
 ### Fetch all categories

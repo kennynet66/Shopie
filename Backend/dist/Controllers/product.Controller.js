@@ -132,8 +132,9 @@ exports.getOneProduct = ((req, res) => __awaiter(void 0, void 0, void 0, functio
         }
     }
     catch (error) {
+        console.error("Error executing SQL query:", error);
         res.status(500).json({
-            error
+            error: "Internal Server Error"
         });
     }
 }));
