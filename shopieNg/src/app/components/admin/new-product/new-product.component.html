@@ -54,9 +54,7 @@
           </div>
           <div class="product-actions">
             <i class="fa-solid fa-trash" style="color: red;" (click)="deleteProduct(products.productId)"></i>
-            <i class="fa-solid fa-pen-to-square" style="color: #1e90ff;"></i>
-            <!-- <button class="delete" (click)="deleteProduct(products.productId)">Delete</button> -->
-            <!-- <button class="edit">Edit</button> -->
+            <i class="fa-solid fa-pen-to-square" (click)="navigateToUpdate(products.productId)" style="color: #1e90ff;"></i>
           </div>
           </div>
 

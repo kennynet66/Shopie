@@ -7,7 +7,7 @@ Content-Type: application/json
     "descr": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
     "productQuantity": 200,
     "productImage": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-    "productCategory": "men's clothing",
+    "productCategory": "ce9229df-8e96-4694-9621-67f75e6c53cf",
     "productPrice": 109.95
 }
 

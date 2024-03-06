@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Product } from '../Interfaces/product.interface';
 import { Observable } from 'rxjs';
 import { productsResponse } from '../Interfaces/products.Interface';
+import { userInfoResponse } from '../Interfaces/user.Interface';
 
 @Injectable({
   providedIn: 'root'
@@ -79,6 +80,13 @@ export class ApiService {
       headers: new HttpHeaders({
         'Content-type': 'application/json'
       })
+    })
+  }
+  checkUserDetails(token: string){
+    return this.http.get<userInfoResponse>('http://localhost:3000/auth/checkdetails', {
+      headers: {
+        token
+      }
     })
   }
 }

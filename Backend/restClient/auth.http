@@ -11,4 +11,4 @@ Content-Type: application/json
 ###
 GET http://localhost:3000/auth/checkdetails
 Content-Type: application/json
-token: 
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJlZTJhYjBjYy05MzZkLTQ5N2UtODFlZS0zYjY4ZGZhNDA3ODciLCJmaXJzdE5hbWUiOiJLZW5lZHkiLCJsYXN0TmFtZSI6Ik1haW5hIiwiZW1haWwiOiJrZW5ueW5ldDY2QGdtYWlsLmNvbSIsImlzQWRtaW4iOm51bGwsImlzRGVsZXRlZCI6bnVsbCwiaWF0IjoxNzA5NzIyMzM0LCJleHAiOjE3MDk3NTgzMzR9.iL6guvWx4cfoLXLHRbrjX0FnHtiHg_VMoY-lCx4hy58
