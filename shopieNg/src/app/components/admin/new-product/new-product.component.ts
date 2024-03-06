@@ -76,9 +76,6 @@ export class NewProductComponent {
       }
     })
   }
-  navigateToUpdate(productId:string){
-   this.router.navigate([`update/${productId}` ])
-  }
 
   confirmDelete(productName: string, productId:string){
     this.tempId = productId

@@ -1,36 +1,79 @@
 .products{
   width: 80vw;
   padding: 10px 0;
-}
-.cards {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  flex-direction: column;
+}
+.customer-section {
+  width: 80vw;
+}
+#customers {
+  width: 80%;
+}
+#customers th{
+  background-color: dodgerblue;
+  padding: 10px;
+  text-align: left;
 }
 
-.card {
-  background-color: #f2f2f2;
-  cursor: pointer;
-  max-width: 400px;
+#customers td {
+  background-color: #dbdbdb;
   padding: 10px;
-  border-radius: 5px;
-  box-shadow: 5px 0 3px  #dbdbdd;
+}
+
+
+.actions {
   display: flex;
   gap: 20px;
 }
 
-.card:hover {
-  background-color: #dbdbdd;
+.actions i {
+  cursor: pointer;
 }
 
-.product-img {
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
+.confirm-div{
+  background-color: #ffffff;
+  transition-duration: 1s;
+  position: fixed;
+  z-index: 3;
+  top: 20%;
+  padding: 10px;
+  align-self: center;
+  text-align: center;
+  box-shadow: 0 0 5px #000;
+  border-radius: 5px;
 }
 
-.product-actions {
+.warning-img {
+  width: 90px;
+}
+
+.confirm-delete, .confirm-cancel {
+  color: #ffffff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.confirm-btns{
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  gap: 10px;
+  justify-content: center;
+  margin: 2%;
+}
+
+.confirm-cancel{
+  background-color: #F4C430;
+  color: #ffffff;
+}
+
+.confirm-cancel:hover {
+  background-color: #E4D00A;
+}
+.confirm-delete{
+  background-color: #ED2939;
+}
+.confirm-delete:hover{
+  background-color: #FF2400;
 }

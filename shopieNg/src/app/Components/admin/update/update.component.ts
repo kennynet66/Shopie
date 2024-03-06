@@ -83,7 +83,7 @@ export class UpdateComponent {
   updateProduct(){
     this.apiservice.updateProduct(this.updateProductForm.value, this.productId).subscribe(res => {
       if(res.success){
-        this.displaySuccess(res.success, '/admin/new-product')
+        this.displaySuccess(res.success, '/admin/products')
       } else if(res.error){
         this.displayErrors(res.error)
       }

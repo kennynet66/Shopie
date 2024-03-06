@@ -1,5 +1,5 @@
 <section class="products">
-  <div class="cards">
+  <!-- <div class="cards">
     <div class="card" *ngFor="let products of productsarr; let i = index">
       <div class="product-img-div">
         <img class="product-img" src="{{products.productImage}}" alt="product Image">
@@ -13,5 +13,38 @@
         <button>Edit</button>
       </div>
     </div>
+  </div> -->
+  <div *ngIf="confirmAction" class="confirm-div">
+    <img src="../../../../assets/warning.png" class="warning-img" alt="">
+    <h4>Are you sure you want to delete the item {{tempName}}?</h4>
+    <div class="confirm-btns">
+      <button class="confirm-cancel" (click)="cancelDelete()">Cancel</button>
+      <button class="confirm-delete" (click)="deleteProduct(tempId)">Delete</button>
+    </div>
   </div>
+  <table id="customers">
+    <tr>
+      <th>No. </th>
+      <th>Product Name </th>
+      <th>Price </th>
+      <th>Description</th>
+      <th>Category</th>
+      <th>Actions</th>
+    </tr>
+
+    <tr *ngFor="let products of productsarr; let i = index">
+      <td>{{i + 1}}</td>
+      <td>{{products.productName}}</td>
+      <td>{{products.productPrice | currency: '$'}}</td>
+      <td>{{products.descr}}</td>
+      <td>{{products.categoryName}}</td>
+      <td>
+        <div class="actions">
+          <i class="fa-solid fa-trash" style="color: red;" (click)="confirmDelete(products.productName, products.productId)"></i>
+          <!-- <i class="fa-solid fa-trash" style="color: red;"></i> -->
+          <i class="fa-solid fa-pen-to-square" routerLink="/admin/update/{{products.productId}}" style="color: #1e90ff;"></i>
+        </div>
+      </td>
+    </tr>
+  </table>
 </section>
