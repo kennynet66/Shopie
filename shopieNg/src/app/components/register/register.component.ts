@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -9,5 +10,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
+  registerForm!: FormGroup;
 
+  constructor(private fb: FormBuilder){}
 }

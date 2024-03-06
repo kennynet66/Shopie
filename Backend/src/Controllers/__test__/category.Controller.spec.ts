@@ -1,6 +1,5 @@
 import mssql from 'mssql';
 import { createCategory, getAllCategories } from '../category.Controller';
-import { number } from 'joi';
 describe("Category tests", () => {
     let res: any
     beforeEach(() => {
