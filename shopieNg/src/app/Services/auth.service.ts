@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { loginDetails, loginResponse } from '../Interfaces/login.interface';
 import { Observable, of } from 'rxjs';
+import { User, userResponse } from '../Interfaces/user.Interface';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +11,6 @@ export class AuthService {
 
   constructor(private http:HttpClient) { }
 
-  loginUser(details:loginDetails){
-    return this.http.post<loginResponse>('http://localhost:3000/auth/login', details)
-  }
 
   readToken(token:string){
     return this.http.get<{info:{userId:string, firstName:string, lastName:string, email: string}}>('http://localhost:4100/auth/checkdetails', {
@@ -28,5 +26,12 @@ export class AuthService {
 
   getCurrentUser(): Observable<{ id: string, username: string }> {
     return of(this.currentUser);
+  }
+
+  loginUser(details:loginDetails){
+    return this.http.post<loginResponse>('http://localhost:3000/auth/login', details)
+  }
+  registerUser(details:User){
+    return this.http.post<userResponse>('http://localhost:3000/user', details)
   }
 }

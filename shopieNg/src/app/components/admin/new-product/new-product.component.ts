@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { DataService } from '../../../Services/data.service';
 import { category } from '../../../Interfaces/categories.Inteface';
 import { product } from '../../../Interfaces/products.Interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-product',
@@ -18,7 +19,7 @@ export class NewProductComponent {
   productsarr: product[] = [];
   value:string ='Save'
 
-  constructor(private fb:FormBuilder, private dataservice: DataService){
+  constructor(private fb:FormBuilder, private dataservice: DataService, private router: Router){
     this.createProductForm = this.fb.group({
       productName: ['', [Validators.required]],
       descr: ['', [Validators.required]],
@@ -69,5 +70,7 @@ export class NewProductComponent {
       }
     })
   }
-  categoryDetails(categoryId: string){}
+  navigateToUpdate(productId:string){
+   this.router.navigate([`update/${productId}` ])
+  }
 }

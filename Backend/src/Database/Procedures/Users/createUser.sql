@@ -10,3 +10,5 @@ BEGIN
     INSERT INTO Users(userId, firstName, lastName, email, password)
     VALUES(@userId, @firstName, @lastName, @email, @password)
 END
+
+SELECT * FROM Users
