@@ -6,7 +6,7 @@ CREATE TABLE cart (
     isPaid BIT DEFAULT 0
 );
 
--- SELECT * FROM cart
+SELECT * FROM cart
 
 -- ALTER TABLE cart
 -- ALTER COLUMN products NVARCHAR(MAX);

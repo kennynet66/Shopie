@@ -5,62 +5,130 @@ import { cart } from '../Interfaces/cart.interface';
 import { sqlConfig } from "../Config/sql.config";
 import { createCartSchema } from '../Validators/cart.validator';
 
+// export const createCart = async (req: Request, res: Response) => {
+//     try {
+//         const { userId, date, products }: cart = req.body;     
+
+//         let validationResult = createCartSchema.validate(req.body);
+//         let error: any = validationResult.error;
+
+//         if (error) {
+//             return res.json({
+//                 error: error.details[0].message
+//             });
+//         }
+
+//         const pool = await mssql.connect(sqlConfig);
+
+//         const existingCart: { id: string, products: string }[] = await (await pool.request()
+//             .input("userId", mssql.VarChar, userId)
+//             .execute('getUserCart')).recordset;
+            
+//         if (existingCart.length > 0) {
+//             const id: string = existingCart[0].id;
+
+//             const updatedProducts = JSON.parse(existingCart[0].products);
+//             updatedProducts.push(...products);
+
+//             let updateResult = await (await pool.request()
+//                 .input("id", mssql.VarChar, id)
+//                 .input("userId", mssql.VarChar, userId)
+//                 .input("date", mssql.DateTime, date || new Date())
+//                 .input("products", mssql.NVarChar, JSON.stringify(updatedProducts))
+//                 .execute('updateCart'));
+
+//             if (updateResult.rowsAffected && updateResult.rowsAffected[0] > 0) {
+//                 return res.status(200).json({ success: true, message: 'Product added to existing cart successfully' });
+//             } else {
+//                 return res.status(500).json({ error: 'Failed to update existing cart' });
+//             }
+//         } else {
+//             const id = v4();
+//             let result = await (await pool.request()
+//                 .input("id", mssql.VarChar, id)
+//                 .input("userId", mssql.VarChar, userId)
+//                 .input("date", mssql.DateTime, date)
+//                 .input("products", mssql.NVarChar, JSON.stringify(products))
+//                 .execute('createCart'));
+
+//             if (result.rowsAffected && result.rowsAffected[0] > 0) {
+//                 return res.status(201).json({ success: true, message: 'New cart created successfully' });
+//             } else {
+//                 return res.status(500).json({ error: 'Failed to create new cart' });
+//             }
+//         }
+//     } catch (error) {
+//         return res.status(500).json({error});
+//     }
+// };
+
 export const createCart = async (req: Request, res: Response) => {
     try {
-        const { userId, date, products }: cart = req.body;     
-
-        let validationResult = createCartSchema.validate(req.body);
-        let error: any = validationResult.error;
-
-        if (error) {
-            return res.json({
-                error: error.details[0].message
-            });
+      const { userId, date, products }: cart = req.body;
+  
+      let validationResult = createCartSchema.validate(req.body);
+      let error: any = validationResult.error;
+  
+      if (error) {
+        return res.json({
+          error: error.details[0].message
+        });
+      }
+  
+      const pool = await mssql.connect(sqlConfig);
+  
+      const existingCart: { id: string, products: string }[] = await (await pool.request()
+        .input("userId", mssql.VarChar, userId)
+        .execute('getUserCart')).recordset;
+  
+      if (existingCart.length > 0) {
+        const id: string = existingCart[0].id;
+        
+        const currentProducts = JSON.parse(existingCart[0].products);
+  
+        const productExists = products.some((product: any) => {
+          return currentProducts.some((currentProduct: any) => currentProduct.productId === product.productId);
+        });
+  
+        if (productExists) {
+          return res.status(400).json({ error: 'Product already exists in the cart.' });
         }
-
-        const pool = await mssql.connect(sqlConfig);
-
-        const existingCart: { id: string, products: string }[] = await (await pool.request()
-            .input("userId", mssql.VarChar, userId)
-            .execute('getUserCart')).recordset;
-            
-        if (existingCart.length > 0) {
-            const id: string = existingCart[0].id;
-
-            const updatedProducts = JSON.parse(existingCart[0].products);
-            updatedProducts.push(...products);
-
-            let updateResult = await (await pool.request()
-                .input("id", mssql.VarChar, id)
-                .input("userId", mssql.VarChar, userId)
-                .input("date", mssql.DateTime, date || new Date())
-                .input("products", mssql.NVarChar, JSON.stringify(updatedProducts))
-                .execute('updateCart'));
-
-            if (updateResult.rowsAffected && updateResult.rowsAffected[0] > 0) {
-                return res.status(200).json({ success: true, message: 'Product added to existing cart successfully' });
-            } else {
-                return res.status(500).json({ error: 'Failed to update existing cart' });
-            }
+  
+        currentProducts.push(...products);
+  
+        
+        let updateResult = await (await pool.request()
+          .input("id", mssql.VarChar, id)
+          .input("userId", mssql.VarChar, userId)
+          .input("date", mssql.DateTime, date || new Date())
+          .input("products", mssql.NVarChar, JSON.stringify(currentProducts))
+          .execute('updateCart'));
+  
+        if (updateResult.rowsAffected && updateResult.rowsAffected[0] > 0) {
+          return res.status(200).json({ success: true, message: 'Product added to existing cart successfully' });
         } else {
-            const id = v4();
-            let result = await (await pool.request()
-                .input("id", mssql.VarChar, id)
-                .input("userId", mssql.VarChar, userId)
-                .input("date", mssql.DateTime, date)
-                .input("products", mssql.NVarChar, JSON.stringify(products))
-                .execute('createCart'));
-
-            if (result.rowsAffected && result.rowsAffected[0] > 0) {
-                return res.status(201).json({ success: true, message: 'New cart created successfully' });
-            } else {
-                return res.status(500).json({ error: 'Failed to create new cart' });
-            }
+          return res.status(500).json({ error: 'Failed to update existing cart' });
         }
+      } else {
+        const id = v4();
+        let result = await (await pool.request()
+          .input("id", mssql.VarChar, id)
+          .input("userId", mssql.VarChar, userId)
+          .input("date", mssql.DateTime, date)
+          .input("products", mssql.NVarChar, JSON.stringify(products))
+          .execute('createCart'));
+  
+        if (result.rowsAffected && result.rowsAffected[0] > 0) {
+          return res.status(201).json({ success: true, message: 'New cart created successfully' });
+        } else {
+          return res.status(500).json({ error: 'Failed to create a new cart' });
+        }
+      }
     } catch (error) {
-        return res.status(500).json({error});
+      return res.status(500).json({ error });
     }
-};
+  };
+  
 
 
 export const getAllUsersCarts =  async(req: Request, res:Response)=>{

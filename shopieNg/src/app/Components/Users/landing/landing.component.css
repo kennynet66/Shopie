@@ -3,43 +3,60 @@
     justify-content: center;
     align-items: center;
     height: 40vh;
-    /* width: 60vw; */
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .advert {
-    max-width: 100%; 
+    max-width: 100%;  
     max-height: 100%; 
 }
 
+/* .carousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40vh;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.image-container {
+  display: flex;
+  justify-content: space-between;
+  width: 60vw;
+}
+
+.advert {
+  max-width: 80%; 
+  max-height: 100%;
+} */
+
+
 /* //product grid section */
-
-/* landing.component.css */
-
-.category-container{
-  /* background-color: #2E91D9; */
+.category-container {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .product-grid {
-  display: grid;
-  /* flex-direction: row;
-  flex-wrap: wrap; */
-  grid-template-columns: repeat(5, 1fr);
-  justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-around;
 }
 
 .product-card {
-  flex-basis: calc(16.6667% - 20px); 
-  margin-bottom: 20px;
+  flex-basis: calc(20% - 20px);
+  margin: 10px;
   border: 1px solid #ddd;
   padding: 20px;
   text-align: center;
 }
 
 .product-card img {
-  /* max-width: 100%;  */
-  max-width: 200px; 
-  max-height: 200px;
+  max-width: 100%;
+  max-height: 100%;
   height: auto;
 }
 
@@ -55,8 +72,9 @@
 
 .product-card .price {
   font-size: 18px;
-  color: #2E91D9; 
+  color: #2E91D9;
 }
+
 
 
 

@@ -101,16 +101,16 @@ export const getOneProduct = (async (req: Request, res: Response)=>{
             // Get the product Id from the req params
             const productId = req.params.productId
             
-            const product = (await pool.request()
+            const products = (await pool.request()
             
             .input('productId', mssql.VarChar, productId)
             .execute('getOneProduct')
             ).recordset
 
             // Verify if it found the product with the provided id
-            if(product.length >= 1) {
+            if(products.length >= 1) {
                 res.status(200).json({
-                    product
+                    products
                 })
             } else {
                 res.status(201).json({
