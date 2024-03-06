@@ -18,6 +18,8 @@ export class NavbarComponent {
   }
 
   isLogged: boolean = false;
+  firstName!: string
+  lastName!: string
 
   navigateToHome(){
     this.router.navigate(['/']);
@@ -41,6 +43,8 @@ export class NavbarComponent {
       this.apiservice.checkUserDetails(token).subscribe(res =>{
         if(res.info){
           this.isLogged = true
+          this.firstName = res.info.firstName
+          this.lastName = res.info.lastName
         }
       })
     } else {

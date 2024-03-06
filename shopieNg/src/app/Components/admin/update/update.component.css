@@ -1,0 +1,82 @@
+.new-product {
+  width: 80vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f2f2f2;
+  overflow: scroll;
+}
+.content {
+  display: flex;
+}
+
+input[type='search']{
+  justify-self: center;
+  padding: 15px;
+  border-radius: 10px;
+  margin: 2%;
+  width: 90%;
+  border: none;
+}
+
+.products {
+  max-width: 500px;
+}
+
+.form{
+  background-color: #ffffff;
+  padding: 8px;
+  border-radius: 5px;
+  width: 50%;
+  margin: 2%;
+  height: max-content;
+}
+
+.input-div{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 1%;
+}
+
+.input-div input, select{
+  padding: 10px;
+}
+
+.submit-btn{
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  color: #ffffff;
+  background-color: #1e90ff;
+  cursor: pointer;
+}
+
+.submit-btn:hover{
+  background-color: rgba(30,144,255, .9);
+}
+
+label{
+  font-weight: bold;
+}
+.error-message {
+  color: #721c24;
+  background-color: #f8d7da;
+  padding: 10px;
+  border: 1px solid #f5c6cb;
+  border-radius: 5px;
+  text-align: center;
+  position: fixed;
+  width: 100%;
+}
+
+.success-message {
+  width: 100%;
+  position: fixed;
+  text-align: center;
+  color: #155724;
+  background-color: #d4edda;
+  padding: 10px;
+  border: 1px solid #c3e6cb;
+  border-radius: 5px;
+}

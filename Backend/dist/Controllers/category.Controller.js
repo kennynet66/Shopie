@@ -36,6 +36,7 @@ exports.createCategory = ((req, res) => __awaiter(void 0, void 0, void 0, functi
             const result = (yield pool.request()
                 .input('categoryId', mssql_1.default.VarChar, categoryId)
                 .input('categoryName', mssql_1.default.VarChar, categoryDetails.categoryName)
+                .input('categoryImage', mssql_1.default.VarChar(), categoryDetails.categoryImage)
                 .execute('createCategory')).rowsAffected;
             if (result[0] > 0) {
                 res.status(200).json({

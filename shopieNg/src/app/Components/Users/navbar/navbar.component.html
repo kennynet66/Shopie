@@ -25,10 +25,12 @@
 
     <button class="search-button">Search</button>
 
+    <div class="user" *ngIf="isLogged">Welcome, {{firstName | titlecase}} {{lastName | titlecase}}</div>
+
     <div class="cart-icon" (click)="openCart()">
         <img class="cart-icon" src="../../../../assets/cart-icon.png" alt="cart-icon" >
     </div>
 
     <a *ngIf="isLogged" class="login-link" (click)="logout()" style="cursor: pointer;">Logout</a>
-    <a *ngIf="!isLogged" class="login-link" routerLink="login" style="cursor: pointer;">Login</a>
+    <a *ngIf="!isLogged" class="login-link" routerLink="/login" style="cursor: pointer;">Login</a>
 </nav>

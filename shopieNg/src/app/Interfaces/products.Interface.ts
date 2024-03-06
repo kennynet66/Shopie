@@ -1,7 +1,7 @@
 export interface productsResponse {
   products: [
     {
-      categoryId : string, 
+      categoryId : string,
       productId: string,
       productName: string,
       categoryName: string,
@@ -34,4 +34,9 @@ export interface newProductResponse {
 export interface deleteProductResponse {
   success: string,
   error: string,
+}
+
+export interface updateProductInterface{
+  success: string,
+  error: string
 }
