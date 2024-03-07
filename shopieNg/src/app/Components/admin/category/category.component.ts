@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { DataService } from '../../Services/data.service';
-import { category } from '../../Interfaces/categories.Inteface';
+import { DataService } from '../../../Services/data.service';
+import { category } from '../../../Interfaces/categories.Inteface';
 
 @Component({
   selector: 'app-category',

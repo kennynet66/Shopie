@@ -70,6 +70,11 @@
 
         </div>
       </div>
+      <div class="no-products" *ngIf="productsarr.length < 1">
+        <img src="../../../../assets/octocat.png" alt="">
+        <h1>You have no products at the moment</h1>
+        <p><i>Add products to see them here</i></p>
+      </div>
     </div>
   </div>
 

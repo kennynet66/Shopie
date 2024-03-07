@@ -12,7 +12,8 @@ import { ProductsComponent } from './Components/admin/products/products.componen
 import { NewProductComponent } from './Components/admin/new-product/new-product.component';
 import { CustomersComponent } from './Components/admin/customers/customers.component';
 import { AuthGuard } from './Guards/auth.guard';
-import { CategoryComponent } from './Components/category/category.component';
+import { CategoryComponent } from './Components/admin/category/category.component';
+import { SettingsComponent } from './Components/admin/settings/settings.component';
 
 export const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -28,7 +29,8 @@ export const routes: Routes = [
       { path: 'new-product', component: NewProductComponent },
       { path: 'customers', component: CustomersComponent },
       { path: 'update/:productId', component: UpdateComponent },
-      { path: 'category', component:CategoryComponent }
+      { path: 'category', component:CategoryComponent },
+      { path: 'settings', component: SettingsComponent }
     ]
   },
   { path: '**', component: NotfoundComponent },

@@ -1,6 +1,6 @@
 import mssql from 'mssql';
 import { createCategory, getAllCategories } from '../category.Controller';
-describe("Category tests", () => {
+describe("Create category tests", () => {
     let res: any
     beforeEach(() => {
         res = {
@@ -11,7 +11,8 @@ describe("Category tests", () => {
     it("Successfuly creates a category", async () => {
         const req = {
             body: {
-                categoryName: "sample category"
+                categoryName: "sample category",
+                categoryImage: "https://www.example.com"
             }
         }
 
@@ -62,6 +63,34 @@ describe("Category tests", () => {
         await createCategory(req as any, res)
 
         expect(res.json).toHaveBeenCalledWith({ "error": "\"categoryName\" is not allowed to be empty" })
+        expect(res.status).toHaveBeenCalledWith(202)
+    })
+
+    it('returns an error if category image is empty',async  ()=>{
+        const req = {
+            body: {
+                categoryName: "Sample category name",
+                categoryImage: ""
+            }
+        }
+        const mockedInput = jest.fn().mockReturnThis()
+
+        const mockedExecute = jest.fn().mockResolvedValue({ rowsAffected: [0] })
+
+        const mockedRequest = {
+            input: mockedInput,
+            execute: mockedExecute
+        }
+
+        const mockedPool = {
+            request: jest.fn().mockReturnValue(mockedRequest)
+        }
+
+        jest.spyOn(mssql, 'connect').mockResolvedValue(mockedPool as never)
+
+        await createCategory(req as any, res)
+
+        expect(res.json).toHaveBeenCalledWith({"error": "\"categoryImage\" is not allowed to be empty"})
         expect(res.status).toHaveBeenCalledWith(202)
     })
 })

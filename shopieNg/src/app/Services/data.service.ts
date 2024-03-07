@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { deleteProductResponse, newProductResponse, product, productsResponse } from '../Interfaces/products.Interface';
 import { Categories, category, createCategoryResponse } from '../Interfaces/categories.Inteface';
+import { allUsersResponse } from '../Interfaces/user.Interface';
 
 @Injectable({
   providedIn: 'root'
@@ -24,5 +25,12 @@ export class DataService {
   }
   createCategory(categoryDetails: category){
     return this.http.post<createCategoryResponse>('http://localhost:3000/categories/new-category', categoryDetails)
+  }
+  getAllUsers(token: string){
+    return this.http.get<allUsersResponse>('http://localhost:3000/user', {
+      headers: {
+        token
+      }
+    })
   }
 }

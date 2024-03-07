@@ -45,8 +45,8 @@ export const loginUser = async(req: Request, res: Response)=>{
             })
             
             return res.status(200).json({
-                message: "Logged in successfully", token,
-                ...loginCredentials[0]
+                message: "Logged in successfully", token
+                // ...loginCredentials[0]
             })
             
         }else{

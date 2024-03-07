@@ -5,8 +5,8 @@ import { verifyToken } from "../Middleware/verifyToken";
 const userRouter = Router()
 
 userRouter.post('/', createUser)
-userRouter.get('/', verifyToken, getUser)
-userRouter.get('/:id', verifyToken, getAllUsers)
+userRouter.get('/:id', verifyToken, getUser)
+userRouter.get('/', verifyToken, getAllUsers)
 userRouter.put('/update/:id', verifyToken, updateUser)
 userRouter.delete('/delete/:id', verifyToken, deleteUser)
 

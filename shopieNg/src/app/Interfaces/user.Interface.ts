@@ -1,8 +1,8 @@
 export interface User {
-  firstName:string,
+  firstName: string,
   lastName: string,
   email: string,
-  password:string
+  password: string
 }
 
 export interface userResponse {
@@ -17,5 +17,25 @@ export interface userInfoResponse {
     email: string,
     isAdmin: boolean
   },
-  error:string
+  error: string
+}
+
+export interface allUsersResponse {
+  users: [
+    {
+      userId: string
+      firstName: string,
+      lastName: string,
+      email: string,
+      isAdmin: boolean
+    }
+  ]
+}
+
+export interface userArr {
+  userId: string
+  firstName: string,
+  lastName: string,
+  email: string,
+  isAdmin: boolean
 }

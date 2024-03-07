@@ -77,3 +77,15 @@
 .confirm-delete:hover{
   background-color: #FF2400;
 }
+
+.no-products{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.no-products img{
+  width: 300px;
+}

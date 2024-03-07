@@ -9,15 +9,16 @@
       <th>Actions</th>
     </tr>
 
-    <tr>
-      <td>1</td>
-      <td>Kenedy</td>
-      <td>Maina</td>
-      <td>kennynet66&#64;gmail.com</td>
-      <td>Admin</td>
+    <tr *ngFor="let user of userArr; let i = index">
+      <td>{{i + 1}}</td>
+      <td>{{user.firstName}}</td>
+      <td>{{user.lastName}}</td>
+      <td>{{user.email}}</td>
+      <td *ngIf="user.isAdmin">Admin</td>
+      <td *ngIf="!user.isAdmin">User</td>
       <td>
         <div class="actions">
-          <i class="fa-solid fa-user-xmark"></i>
+          <i class="fa-solid fa-user-xmark" title="disable"></i>
         </div>
       </td>
     </tr>

@@ -41,10 +41,14 @@
       <td>
         <div class="actions">
           <i class="fa-solid fa-trash" style="color: red;" (click)="confirmDelete(products.productName, products.productId)"></i>
-          <!-- <i class="fa-solid fa-trash" style="color: red;"></i> -->
           <i class="fa-solid fa-pen-to-square" routerLink="/admin/update/{{products.productId}}" style="color: #1e90ff;"></i>
         </div>
       </td>
     </tr>
   </table>
+  <div class="no-products" *ngIf="productsarr.length < 1">
+    <img src="../../../../assets/octocat.png" alt="">
+    <h1>You have no products at the moment</h1>
+    <p><i>Add products to see them here</i></p>
+  </div>
 </section>

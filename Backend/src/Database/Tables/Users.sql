@@ -5,7 +5,7 @@ CREATE TABLE Users(
     email VARCHAR(255),
     password VARCHAR(255), 
     isAdmin BIT DEFAULT 0,
-    isDeleted VARCHAR(255)
+    isDeleted BIT DEFAULT 0
 )
 
 DROP TABLE Users

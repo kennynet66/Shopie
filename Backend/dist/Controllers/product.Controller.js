@@ -197,28 +197,35 @@ exports.updateProduct = ((req, res) => __awaiter(void 0, void 0, void 0, functio
     try {
         // get the request body
         const product = req.body;
-        console.log(req.body);
-        // Get the product Id from the request params
-        const productId = req.params.productId;
-        const pool = yield mssql_1.default.connect(sql_config_1.sqlConfig);
-        const result = (yield pool.request()
-            .input('productId', mssql_1.default.VarChar, productId)
-            .input('productName', mssql_1.default.VarChar, product.productName)
-            .input('descr', mssql_1.default.VarChar, product.descr)
-            .input('productQuantity', mssql_1.default.Int, product.productQuantity)
-            .input('productImage', mssql_1.default.VarChar, product.productImage)
-            .input('productCategory', mssql_1.default.VarChar, product.productCategory)
-            .input('productPrice', mssql_1.default.Money, product.productPrice)
-            .execute('updateProduct')).rowsAffected;
-        if (result[0] >= 1) {
-            return res.status(200).json({
-                success: "Product updated successfully"
+        const { error } = product_validator_1.updateProductSchema.validate(req.body);
+        if (error) {
+            res.status(201).json({
+                error: error.details[0].message
             });
         }
         else {
-            return res.status(201).json({
-                error: "Error updating product"
-            });
+            // Get the product Id from the request params
+            const productId = req.params.productId;
+            const pool = yield mssql_1.default.connect(sql_config_1.sqlConfig);
+            const result = (yield pool.request()
+                .input('productId', mssql_1.default.VarChar, productId)
+                .input('productName', mssql_1.default.VarChar, product.productName)
+                .input('descr', mssql_1.default.VarChar, product.descr)
+                .input('productQuantity', mssql_1.default.Int, product.productQuantity)
+                .input('productImage', mssql_1.default.VarChar, product.productImage)
+                .input('productCategory', mssql_1.default.VarChar, product.productCategory)
+                .input('productPrice', mssql_1.default.Money, product.productPrice)
+                .execute('updateProduct')).rowsAffected;
+            if (result[0] >= 1) {
+                return res.status(200).json({
+                    success: "Product updated successfully"
+                });
+            }
+            else {
+                return res.status(201).json({
+                    error: "Error updating product"
+                });
+            }
         }
     }
     catch (error) {

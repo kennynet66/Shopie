@@ -11,7 +11,7 @@ Content-Type: application/json
 
 ### Get Users
 GET http://localhost:3000/user
-Authorization: Bearer YOUR_ACCESS_TOKEN
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxNDdmMjQ1OC1mZmM0LTRjZGYtODA1Yy04Zjg3YzNhZjM1ZTEiLCJmaXJzdE5hbWUiOiJLZW5lZHkiLCJsYXN0TmFtZSI6Ik1haW5hIiwiZW1haWwiOiJrZW5ueW5ldDY2QGdtYWlsLmNvbSIsImlzQWRtaW4iOnRydWUsImlzRGVsZXRlZCI6bnVsbCwiaWF0IjoxNzA5NzYxNDU4LCJleHAiOjE3MDk3OTc0NTh9.3zzs7gWwceLajIRy2dTh5nrJWMBfZ_xAdWiQ6eI6ItY
 
 ### Update User
 PUT http://localhost:3000/user/update/:id

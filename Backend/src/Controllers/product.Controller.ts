@@ -10,7 +10,7 @@ import { Request, Response } from "express";
 import mssql from 'mssql';
 import { sqlConfig } from "../Config/sql.config";
 import { v4 } from "uuid";
-import { newProductSchema } from "../Validators/product.validator";
+import { newProductSchema, updateProductSchema } from "../Validators/product.validator";
 import { Product } from "../Interfaces/product.Interface";
 
 export const createProduct = (async (req: Request, res: Response) => {
@@ -193,8 +193,15 @@ export const updateProduct = (async(req: Request, res: Response) =>{
     try {
         // get the request body
         const product: Product = req.body;
-        console.log(req.body)
-        // Get the product Id from the request params
+
+        const {error} = updateProductSchema.validate(req.body);
+
+        if (error){
+            res.status(201).json({
+                error: error.details[0].message
+            })
+        } else {
+                    // Get the product Id from the request params
         const productId: string = req.params.productId;
 
         const pool = await mssql.connect(sqlConfig);
@@ -219,6 +226,8 @@ export const updateProduct = (async(req: Request, res: Response) =>{
                 error: "Error updating product"
             })
         }
+        }
+
     }catch(error){
         return res.status(500).json({
             error
