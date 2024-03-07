@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router, RouterLink } from '@angular/router';
 import { loginDetails } from '../../Interfaces/login.interface';
 import { AuthService } from '../../Services/auth.service';
+import { ApiService } from '../../Services/api.service';
 
 @Component({
   selector: 'app-login',
@@ -43,7 +44,7 @@ export class LoginComponent {
   }
 
 
-  constructor(private fb: FormBuilder, private authservice: AuthService, private router: Router){
+  constructor(private fb: FormBuilder, private authservice: AuthService, private router: Router, private apservice: ApiService){
     this.loginForm = this.fb.group({
       email: ['', [Validators.required]],
       password: ['', [Validators.required]]
@@ -52,18 +53,23 @@ export class LoginComponent {
 
   loginUser(details: loginDetails){
     if(this.loginForm.valid){
-      this.authservice.loginUser(details).subscribe(res =>{
-        console.log("called");
-        if(res.message && res.isAdmin){
-          this.displaySuccess(res.message, 'admin/products', res.token);
-        } else if(res.message && !res.isAdmin){
-          this.displaySuccess(res.message, '', res.token)
-        } else if(res.error){
-          this.displayErrors(res.error)
+      this.authservice.loginUser(details).subscribe(response =>{
+        console.log(response);
+        if(response.message){
+          this.apservice.checkUserDetails(response.token).subscribe(res =>{
+            if (res.info.isAdmin){
+              this.displaySuccess(response.message, 'admin/products', response.token);
+            }
+            else if(!res.info.isAdmin){
+              this.displaySuccess(response.message, '', response.token)
+            } else if(response.error){
+              this.displayErrors(response.error)
+            }
+          })
         }
       })
     } else {
-  console.log("Invalid form");
+      this.displayErrors('Please fill in all the fields')
 
     }
   }
