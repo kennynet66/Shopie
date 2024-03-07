@@ -17,7 +17,7 @@ import { AuthService } from '../../../Services/auth.service';
 
 export class CartModalComponent  implements OnInit {
 
-  cartItems:  any[] = []; 
+  cartItems:  any[] = [];
   isCartOpen: boolean = false;
 
   constructor(private api: ApiService, private router: Router, private cartService: CartService, private authService: AuthService ) {  }
@@ -32,20 +32,29 @@ export class CartModalComponent  implements OnInit {
       this.isCartOpen = isOpen;
     });
 
-    this.authService.getCurrentUser().subscribe(user => {
-      const userId = user.id;
-      
+
+    this.authService.getCurrentUser(this.getToken()).subscribe(user => {
+      const userId = user.info.userId;
+
       this.fetchSingleCart(userId);
     });
   }
 
+  getToken(){
+    let token = localStorage.getItem('token');
+    if(token){
+      return token
+    } else {
+      return 'null'
+    }
+  }
   fetchSingleCart(userId: string) {
     console.log(userId);
-    
+
     this.api.getUserCart(userId).subscribe(
       (res) => {
         console.log('API Response:', res);
-  
+
         if (res && res.cart && res.cart.length > 0) {
           console.log('Fetched Single Cart:', res.cart[0]);
           const productsArray = JSON.parse(res.cart[0].products);
@@ -62,7 +71,7 @@ export class CartModalComponent  implements OnInit {
       }
     );
   }
-  
+
 
   getTotalItems(): number {
     return this.cartItems.reduce((total, cart) => total + cart.products.length, 0);
@@ -78,5 +87,5 @@ export class CartModalComponent  implements OnInit {
 
   removeFromCart(){}
 
-  
+
 }

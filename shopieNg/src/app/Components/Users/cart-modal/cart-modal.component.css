@@ -43,7 +43,7 @@ body {
 .cart-table {
   width: 80vw;
   border-collapse: collapse;
-  margin-top: 900px;
+  /* margin-top: 900px; */
 }
 
 .cart-table th, .cart-table td {
@@ -54,7 +54,7 @@ body {
 
 .cart-table th {
   background-color: #f2f2f2;
-  font-weight: bold; 
+  font-weight: bold;
 }
 
 
@@ -85,7 +85,7 @@ body {
   border: none;
   cursor: pointer;
 }
-  
+
 
   /* footerstyle */
 .footer {

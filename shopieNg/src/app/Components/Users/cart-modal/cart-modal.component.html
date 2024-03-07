@@ -17,7 +17,7 @@
         <tr *ngFor="let product of cartItems" class="cart-item">
           <td class="product-image-cell"><img [src]="product.productImage" alt="{{ product.productTitle }}" class="product-image"></td>
           <td>{{ product.productName }}</td>
-          <td>${{ product.productPrice }}</td>
+          <td>{{ product.productPrice | currency: '$' }}</td>
           <td>{{ product.quantity }}</td>
           <td>
             <button (click)="removeFromCart()" class="remove-btn">Remove</button>
@@ -29,7 +29,7 @@
       </tbody>
     </table>
   </div>
-  
+
   <ng-template #noItems>
     <div class="empty-cart-placeholder">
       <p>You don't have any items in your cart</p>
@@ -38,7 +38,7 @@
 
   <button class="checkout-button">Checkout</button>
   <!-- <button class="close-cart-button" (click)="closeCart()">Close</button> -->
-  
+
 </div>
 
 <!-- Your existing footer remains unchanged -->

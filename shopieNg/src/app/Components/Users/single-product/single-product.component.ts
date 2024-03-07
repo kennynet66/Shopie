@@ -22,21 +22,21 @@ import { Product } from '../../../Interfaces/product.interface';
 
 export class SingleProductComponent {
 
-  
+
   productArr: any = []
   errorMessage: string | null = null;
   successMessage: string | null = null;
   quantity: number = 1;
 
-  products: any = []; 
-  product: Product | undefined; 
-  
+  products: any = [];
+  product: Product | undefined;
+
 
   constructor(private api: ApiService, private router: Router,  private route: ActivatedRoute, private cartService: CartService,  private authService: AuthService){}
 
-  ngOnInit(){      
+  ngOnInit(){
     const productId = this.route.snapshot.paramMap.get('id');
-    
+
   if (productId) {
     this.fetchSingleProduct(productId);
   } else {
@@ -48,12 +48,12 @@ export class SingleProductComponent {
     this.api.getSingleProduct(id).subscribe(
       (res) => {
         console.log(res);
-        
+
         if (res.products) {
           this.productArr.push(res.products[0]);
           this.fetchProducts(res.products[0].categoryId);
           console.log(res.products[0].categoryId);
-          
+
         } else {
           this.errorMessage = 'Failed to fetch product details. Please try again.';
           console.error('Product not found or an error occurred:', res);
@@ -109,16 +109,25 @@ incrementQuantity() {
   this.quantity++;
 }
 
+getToken(){
+  let token = localStorage.getItem('token');
+  if(token){
+    return token
+  } else {
+    return 'null'
+  }
+}
+
 addToCart(product: any) {
-  this.authService.getCurrentUser().subscribe(
+  this.authService.getCurrentUser(this.getToken()).subscribe(
     (user) => {
       const productDetails = {
-        userId: user.id,
+        userId: user.info.userId,
         date: new Date().toISOString(),
         products: [{ productId: product.productId, productName: product.productName, productImage: product.productImage, productPrice: product.productPrice, quantity: this.quantity}]
       };
 
-      this.api.addProductToCart(user.id, productDetails).subscribe(
+      this.api.addProductToCart(user.info.userId, productDetails).subscribe(
         (response) => {
           this.successMessage = 'Product added to cart successfully.';
           console.log('Product added to cart:', response);
@@ -148,14 +157,14 @@ addToCart(product: any) {
     this.api.getSingleProduct(productId).subscribe(
       (res: any) => {
         console.log('Full API Response:', res);
-    
+
         if (res) {
           this.product = res;
           console.log('Product Details:', this.product);
           this.router.navigate(['/single-product', productId]);
           this.productArr=[]
           this.fetchSingleProduct(productId)
-          
+
         } else {
           console.error('Product not found or an error occurred:', res.error);
         }
@@ -163,7 +172,7 @@ addToCart(product: any) {
       (error) => {
         console.error('Error fetching single product:', error);
       }
-    ); 
+    );
   }
 
 }
