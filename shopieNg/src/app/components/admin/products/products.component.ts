@@ -13,15 +13,15 @@ import { product } from '../../../Interfaces/products.Interface';
 export class ProductsComponent {
   productsarr: product[] = []
   constructor(private dataservice: DataService){
-    // this.displayProducts();
+    this.displayProducts();
   }
 
-  // displayProducts(){
-  //   this.dataservice.getAllProducts().subscribe(res =>{
-  //     if(res.products){
-  //       res.products.forEach((product:any) =>{ this.productsarr.push(product)})
-  //     }
+  displayProducts(){
+    this.dataservice.getAllProducts().subscribe(res =>{
+      if(res.products){
+        res.products.forEach((product:any) =>{ this.productsarr.push(product)})
+      }
       
-  //   })
-  // }
+    })
+  }
 }

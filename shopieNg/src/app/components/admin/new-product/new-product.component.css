@@ -29,6 +29,7 @@ input[type='search']{
   border-radius: 5px;
   width: 50%;
   margin: 2%;
+  height: max-content;
 }
 
 .input-div{

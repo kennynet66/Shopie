@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
 export class NewProductComponent {
   createProductForm!: FormGroup;
   categoryarr: category[] = [];
-  productsarr: product[] = [];
+  productsarr: any = [];
   value:string ='Save'
 
   constructor(private fb:FormBuilder, private dataservice: DataService, private router: Router){
@@ -54,12 +54,12 @@ export class NewProductComponent {
     })
   }
   displayProducts(){
-    // this.dataservice.getAllProducts().subscribe(res =>{
-    //   if(res.products){
-    //     res.products.forEach(product =>{ this.productsarr.push(product)})
-    //   }
+    this.dataservice.getAllProducts().subscribe(res =>{
+      if(res.products){
+        res.products.forEach(product =>{ this.productsarr.push(product)})
+      }
 
-    // })
+    })
   }
 
   deleteProduct(productId:string){

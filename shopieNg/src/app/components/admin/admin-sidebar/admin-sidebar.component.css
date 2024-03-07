@@ -32,3 +32,17 @@
 i {
   color: dodgerblue;
 }
+
+.logout-section {
+  margin-bottom: 30px; 
+}
+
+.login-link {
+  color: dodgerblue;;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.login-link:hover {
+  text-decoration: underline;
+}
