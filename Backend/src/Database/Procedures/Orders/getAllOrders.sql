@@ -1,0 +1,4 @@
+CREATE OR ALTER getAllOrder 
+AS
+BEGIN 
+SELECT * 

@@ -11,8 +11,7 @@ CREATE TABLE Users(
 DROP TABLE Users
 
 -- SELECT * FROM Users
-
--- ALTER TABLE Users SET isAdmin = 1 WHERE firstName = "duncan"
+-- UPDATE Users SET isAdmin = 1 WHERE firstName = 'kings'
 
 
 

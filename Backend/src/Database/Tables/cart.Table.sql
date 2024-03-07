@@ -1,7 +1,7 @@
 CREATE TABLE cart (
-    id VARCHAR(255) PRIMARY KEY,
+    orderId VARCHAR(255) PRIMARY KEY,
     userId VARCHAR(255),
-    date DATETIME,
+    "date" DATETIME,
     products TEXT,
     isPaid BIT DEFAULT 0
 );

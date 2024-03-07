@@ -1,7 +1,7 @@
 import express from 'express';
 import cron from 'node-cron'
-// import { welcomeUser } from './Mailservices/welcomeuser';
-// import { confimBooking } from './Mailservices/bookedtour';
+import { confirmOrder } from './MailServices/orders';
+import { welcomeUser } from './MailServices/register';
 
 const app = express()
 
@@ -13,14 +13,14 @@ const run = async () => {
     }) 
     
     cron.schedule('*/10 * * * * *',async () => {
-        console.log('checking for a new booking'); 
+        console.log('checking for a new cart'); 
         
-        await confimBooking()
+        await confirmOrder()
     })
 }
 
 run()
 
-app.listen(3000, ()=>{
+app.listen(5000, ()=>{
     console.log("server running...");
 })

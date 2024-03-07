@@ -3,7 +3,7 @@
 <div class="cart-container" [style.height]="isCartOpen ? 'auto' : '0'">
   <div class="cart-items" *ngIf="cartItems.length > 0; else noItems">
     <table class="cart-table">
-      <thead>
+      <thead class="fixed-header">
         <tr>
           <th>Product Image</th>
           <th>Product Name</th>

@@ -52,4 +52,6 @@ export class ProductsComponent {
     this.tempName = ''
     this.confirmAction = false;
   }
-}
+
+    }
+

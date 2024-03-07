@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../navbar/navbar.component';
 // import { Product} from '../../../Interfaces/product.interface';
 import { ApiService } from '../../../Services/api.service'
-import { Router, RouterLink } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { ApiResponse } from '../../../Interfaces/apiResponse.interface';
 import { ActivatedRoute } from '@angular/router';
 import { CartService } from '../../../Services/cart.service';
@@ -36,9 +36,7 @@ export class SingleProductComponent {
 
   ngOnInit(){      
     const productId = this.route.snapshot.paramMap.get('id');
-    // console.log(productId);
     
-
   if (productId) {
     this.fetchSingleProduct(productId);
   } else {
@@ -144,25 +142,28 @@ addToCart(product: any) {
 }
 
 
-navigateToSingleProduct(productId: string): void {
-  console.log('Product ID:', productId);
+  navigateToSingleProduct(productId: string): void {
+    console.log('Product ID:', productId);
 
-  this.api.getSingleProduct(productId).subscribe(
-    (res: any) => {
-      console.log('Full API Response:', res);
-  
-      if (res) {
-        this.product = res;
-        console.log('Product Details:', this.product);
-        this.router.navigate(['/single-product', productId]);
-      } else {
-        console.error('Product not found or an error occurred:', res.error);
+    this.api.getSingleProduct(productId).subscribe(
+      (res: any) => {
+        console.log('Full API Response:', res);
+    
+        if (res) {
+          this.product = res;
+          console.log('Product Details:', this.product);
+          this.router.navigate(['/single-product', productId]);
+          this.productArr=[]
+          this.fetchSingleProduct(productId)
+          
+        } else {
+          console.error('Product not found or an error occurred:', res.error);
+        }
+      },
+      (error) => {
+        console.error('Error fetching single product:', error);
       }
-    },
-    (error) => {
-      console.error('Error fetching single product:', error);
-    }
-  ); 
-}
+    ); 
+  }
 
 }

@@ -64,10 +64,12 @@
     font-size: 1.00rem;
     margin-right: 10px;
     border-radius: 10px;
+    /* margin-top: 20px; */
   }
   
   .add-to-cart-button {
     background-color: #2E91D9;
+    margin-top: 20px;
   }
 
 
